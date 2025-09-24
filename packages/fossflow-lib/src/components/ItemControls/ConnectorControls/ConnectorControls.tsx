@@ -172,8 +172,8 @@ export const ConnectorControls = ({ id }: Props) => {
         <Section title="Width">
           <Slider
             marks
-            step={10}
-            min={10}
+            step={1}
+            min={1}
             max={30}
             value={connector.width}
             onChange={(e, newWidth) => {

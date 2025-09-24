@@ -6,6 +6,7 @@ import awsIsopack from '@isoflow/isopacks/dist/aws';
 import gcpIsopack from '@isoflow/isopacks/dist/gcp';
 import azureIsopack from '@isoflow/isopacks/dist/azure';
 import kubernetesIsopack from '@isoflow/isopacks/dist/kubernetes';
+import pixotopeIcons from './pixotopeIcons';  // New import for custom Pixotope icons
 import { useTranslation } from 'react-i18next';
 import { DiagramData, mergeDiagramData, extractSavableData } from './diagramUtils';
 import { StorageManager } from './StorageManager';
@@ -15,13 +16,56 @@ import ChangeLanguage from './components/ChangeLanguage';
 import { allLocales } from 'fossflow';
 import './App.css';
 
-const icons = flattenCollections([
-  isoflowIsopack,
-  awsIsopack,
-  azureIsopack,
-  gcpIsopack,
-  kubernetesIsopack
-]);
+// Safe manual flattening - bypass the problematic flattenCollections function
+const icons = (() => {
+  const allIcons = [];
+  
+  // Add predefined isopacks safely (extract icons from pack objects and set collection names)
+  if (isoflowIsopack?.icons && Array.isArray(isoflowIsopack.icons)) {
+    const iconsWithCollection = isoflowIsopack.icons.map(icon => ({...icon, collection: 'ISOFLOW'}));
+    allIcons.push(...iconsWithCollection);
+  }
+  
+  if (awsIsopack?.icons && Array.isArray(awsIsopack.icons)) {
+    const iconsWithCollection = awsIsopack.icons.map(icon => ({...icon, collection: 'AWS'}));
+    allIcons.push(...iconsWithCollection);
+  }
+  
+  if (azureIsopack?.icons && Array.isArray(azureIsopack.icons)) {
+    const iconsWithCollection = azureIsopack.icons.map(icon => ({...icon, collection: 'AZURE'}));
+    allIcons.push(...iconsWithCollection);
+  }
+  
+  if (gcpIsopack?.icons && Array.isArray(gcpIsopack.icons)) {
+    const iconsWithCollection = gcpIsopack.icons.map(icon => ({...icon, collection: 'GCP'}));
+    allIcons.push(...iconsWithCollection);
+  }
+  
+  if (kubernetesIsopack?.icons && Array.isArray(kubernetesIsopack.icons)) {
+    const iconsWithCollection = kubernetesIsopack.icons.map(icon => ({...icon, collection: 'KUBERNETES'}));
+    allIcons.push(...iconsWithCollection);
+  }
+  
+  // Add Pixotope icons (already have collection property)
+  if (pixotopeIcons && Array.isArray(pixotopeIcons)) {
+    allIcons.push(...pixotopeIcons);
+  }
+  
+  // Validate icons to prevent render issues
+  const validIcons = allIcons.filter(icon => 
+    icon && 
+    typeof icon.id === 'string' && 
+    typeof icon.name === 'string' && 
+    typeof icon.url === 'string' && 
+    typeof icon.collection === 'string'
+  );
+  
+  if (validIcons.length !== allIcons.length) {
+    console.warn(`Filtered out ${allIcons.length - validIcons.length} invalid icons`);
+  }
+  
+  return validIcons;
+})();
 
 
 interface SavedDiagram {
@@ -638,6 +682,11 @@ function App() {
           onClose={() => setShowDiagramManager(false)}
         />
       )}
+
+      {/* PixoFlow version indicator */}
+      <div className="pixoflow-indicator">
+        PixoFlow
+      </div>
     </div>
   );
 }

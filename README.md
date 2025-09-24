@@ -117,7 +117,7 @@ cd FossFLOW
 npm install
 
 # Build the library (required first time)
-npm run build:lib
+npm start
 
 # Start development server
 npm run dev
