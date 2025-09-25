@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { Isoflow } from 'fossflow';
+import { useState, useEffect, useRef, useMemo } from 'react';
+import { Isoflow, allLocales } from 'fossflow';
 import { flattenCollections } from '@isoflow/isopacks/dist/utils';
 import isoflowIsopack from '@isoflow/isopacks/dist/isoflow';
 import pixotopeIcons from './pixotopeIcons';  // New import for custom Pixotope icons
@@ -9,7 +9,7 @@ import { StorageManager } from './StorageManager';
 import { DiagramManager } from './components/DiagramManager';
 import { storageManager } from './services/storageService';
 import ChangeLanguage from './components/ChangeLanguage';
-import { allLocales } from 'fossflow';
+import { useIconMenuConfig } from './hooks/useIconMenuConfig';
 import './App.css';
 
 // Safe manual flattening - bypass the problematic flattenCollections function
@@ -78,7 +78,25 @@ function App() {
     { id: 'black', value: '#000000' },
     { id: 'gray', value: '#666666' }
   ];
-  
+
+  // Use the new icon menu configuration system
+  const iconMenuConfig = useIconMenuConfig({ availableIcons: icons });
+
+  // Debug log for icon menu configuration
+  useEffect(() => {
+    if (iconMenuConfig.isInitialized) {
+      console.log('Icon Menu Configuration loaded:', {
+        categories: iconMenuConfig.categories.length,
+        validation: iconMenuConfig.validation,
+        settings: iconMenuConfig.settings
+      });
+      
+      // Log validation errors if any
+      if (!iconMenuConfig.validation.isValid) {
+        console.warn('Icon Menu Configuration validation errors:', iconMenuConfig.validation.errors);
+      }
+    }
+  }, [iconMenuConfig.isInitialized]);
   
   const [diagramData, setDiagramData] = useState<DiagramData>(() => {
     // Initialize with last opened data if available
@@ -109,6 +127,56 @@ function App() {
       fitToScreen: true
     };
   });
+
+  // Prepare initial data with configured icons (avoiding infinite loops)
+  const [preparedInitialData, setPreparedInitialData] = useState(diagramData);
+  const [forceRenderKey, setForceRenderKey] = useState(0);
+  
+  // Update prepared data when configuration is ready
+  useEffect(() => {
+    if (iconMenuConfig.isInitialized) {
+      console.log('🔧 Starting icon configuration process...');
+      
+      const configuredIcons = iconMenuConfig.iconsWithConfiguredCollections;
+      const importedIcons = (diagramData.icons || []).filter(icon => icon.collection === 'imported');
+      const allConfiguredIcons = [...configuredIcons, ...importedIcons];
+      
+      console.log('📊 Icon Menu Configuration Debug:', {
+        configured: configuredIcons.length,
+        imported: importedIcons.length,
+        total: allConfiguredIcons.length,
+        categories: Array.from(new Set(allConfiguredIcons.map(icon => icon.collection))),
+        firstFewConfigured: configuredIcons.slice(0, 3).map(icon => ({id: icon.id, name: icon.name, collection: icon.collection})),
+        validationErrors: iconMenuConfig.validation.errors,
+        allCategories: Array.from(new Set(allConfiguredIcons.map(icon => icon.collection))).sort()
+      });
+      
+      // Also log the original icons for comparison
+      console.log('🔍 Original icons vs Configured:', {
+        original: {
+          total: icons.length,
+          categories: Array.from(new Set(icons.map(icon => icon.collection))),
+          sampleIds: icons.slice(0, 5).map(icon => icon.id)
+        },
+        configured: {
+          total: configuredIcons.length,
+          categories: Array.from(new Set(configuredIcons.map(icon => icon.collection))),
+          sampleIds: configuredIcons.slice(0, 5).map(icon => icon.id)
+        }
+      });
+      
+      const newData = {
+        ...diagramData,
+        icons: allConfiguredIcons,
+        colors: diagramData.colors || defaultColors
+      };
+      
+      setPreparedInitialData(newData);
+      setForceRenderKey(prev => prev + 1); // Force Isoflow to re-render
+      
+      console.log('🚀 Forcing Isoflow re-render with configured data');
+    }
+  }, [iconMenuConfig.isInitialized]); // Only depend on isInitialized
 
   // Check for server storage availability
   useEffect(() => {
@@ -535,13 +603,27 @@ function App() {
       </div>
 
       <div className="fossflow-container">
-        <Isoflow 
-          key={fossflowKey}
-          initialData={diagramData}
-          onModelUpdated={handleModelUpdated}
-          editorMode="EDITABLE"
-          locale={allLocales[i18n.language as keyof typeof allLocales]}
-        />
+        {/* Show loading state until configuration is ready */}
+        {!iconMenuConfig.isInitialized ? (
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            height: '400px', 
+            fontSize: '18px',
+            color: '#666'
+          }}>
+            🔧 Loading icon configuration...
+          </div>
+        ) : (
+          <Isoflow 
+            key={`${fossflowKey}-${forceRenderKey}`}
+            initialData={preparedInitialData}
+            onModelUpdated={handleModelUpdated}
+            editorMode="EDITABLE"
+            locale={allLocales[i18n.language as keyof typeof allLocales]}
+          />
+        )}
       </div>
 
       {/* Save Dialog */}

@@ -1,4 +1,4 @@
-import { Model } from 'fossflow/dist/types';
+import type { Model } from 'fossflow';
 
 export interface DiagramInfo {
   id: string;
@@ -34,7 +34,7 @@ class ServerStorage implements StorageService {
     try {
       const response = await fetch(`${this.baseUrl}/api/storage/status`);
       const data = await response.json();
-      this.available = data.enabled;
+      this.available = Boolean(data.enabled);
       return this.available;
     } catch (error) {
       console.log('Server storage not available:', error);

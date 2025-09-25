@@ -1,0 +1,231 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Icon Menu Configuration Schema",
+  "description": "Schema for configuring the icons menu organization in PixoFLOW",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Configuration version (semver)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of this configuration"
+    },
+    "categories": {
+      "type": "array",
+      "description": "Array of icon categories",
+      "items": {
+        "$ref": "#/definitions/Category"
+      },
+      "minItems": 1
+    },
+    "settings": {
+      "$ref": "#/definitions/Settings"
+    },
+    "metadata": {
+      "$ref": "#/definitions/Metadata"
+    }
+  },
+  "required": ["version", "categories"],
+  "additionalProperties": false,
+  "definitions": {
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique identifier for the category (kebab-case)"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display name for the category"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of what icons this category contains"
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Hex color code for the category (e.g., #FF6B35)"
+        },
+        "isExpanded": {
+          "type": "boolean",
+          "description": "Whether the category is expanded by default"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Sort order for the category"
+        },
+        "icons": {
+          "type": "array",
+          "description": "Array of icons in this category",
+          "items": {
+            "$ref": "#/definitions/IconConfig"
+          }
+        }
+      },
+      "required": ["id", "name", "icons"],
+      "additionalProperties": false
+    },
+    "IconConfig": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique identifier for the icon configuration (kebab-case)"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display name for the icon"
+        },
+        "collection": {
+          "type": "string",
+          "enum": ["PIXOTOPE", "ISOFLOW", "AWS"],
+          "description": "Icon collection this icon belongs to"
+        },
+        "existingIconId": {
+          "type": "string",
+          "description": "ID of existing icon to use from the collection"
+        },
+        "fallbackIcon": {
+          "type": "string",
+          "description": "Fallback icon ID if existingIconId is not found"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of what this icon represents"
+        },
+        "customIcon": {
+          "$ref": "#/definitions/CustomIcon",
+          "description": "Custom icon definition (alternative to existingIconId)"
+        }
+      },
+      "required": ["id", "name", "collection"],
+      "additionalProperties": false,
+      "anyOf": [
+        {"required": ["existingIconId"]},
+        {"required": ["customIcon"]}
+      ]
+    },
+    "CustomIcon": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL or path to the custom icon image"
+        },
+        "isIsometric": {
+          "type": "boolean",
+          "description": "Whether the icon is isometric"
+        },
+        "scale": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 3,
+          "description": "Scale factor for the icon"
+        },
+        "flipX": {
+          "type": "boolean",
+          "description": "Whether to flip the icon horizontally"
+        },
+        "flipY": {
+          "type": "boolean",
+          "description": "Whether to flip the icon vertically"
+        }
+      },
+      "required": ["url"],
+      "additionalProperties": false
+    },
+    "Settings": {
+      "type": "object",
+      "properties": {
+        "defaultExpanded": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of category IDs that should be expanded by default"
+        },
+        "showEmptyCategories": {
+          "type": "boolean",
+          "description": "Whether to show categories that have no icons"
+        },
+        "enableSearch": {
+          "type": "boolean",
+          "description": "Whether to enable icon search functionality"
+        },
+        "enableFiltering": {
+          "type": "boolean",
+          "description": "Whether to enable category filtering"
+        },
+        "maxIconsPerCategory": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum number of icons to show per category"
+        },
+        "iconSize": {
+          "$ref": "#/definitions/IconSizeSettings"
+        }
+      },
+      "additionalProperties": false
+    },
+    "IconSizeSettings": {
+      "type": "object",
+      "properties": {
+        "small": {
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 128
+        },
+        "medium": {
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 128
+        },
+        "large": {
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 128
+        }
+      },
+      "required": ["small", "medium", "large"],
+      "additionalProperties": false
+    },
+    "Metadata": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp of when this configuration was created"
+        },
+        "lastModified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp of when this configuration was last modified"
+        },
+        "author": {
+          "type": "string",
+          "description": "Author of this configuration"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of this specific configuration"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

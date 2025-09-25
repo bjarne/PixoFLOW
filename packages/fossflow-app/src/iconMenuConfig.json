@@ -1,0 +1,607 @@
+{
+  "$schema": "./iconMenuConfig.schema.json",
+  "version": "1.0.0",
+  "description": "Configuration for the icons menu organization",
+  "categories": [
+    {
+      "id": "pixotope-systems",
+      "name": "Pixotope Systems",
+      "description": "Core Pixotope system components",
+      "color": "#FF6B35",
+      "isExpanded": true,
+      "order": 1,
+      "icons": [
+        {
+          "id": "pixotope-graphics-compute",
+          "name": "Pixotope Graphics Compute",
+          "collection": "PIXOTOPE",
+          "existingIconId": "server",
+          "fallbackIcon": "server",
+          "description": "High-performance graphics processing unit for real-time rendering"
+        },
+        {
+          "id": "pixotope-tracking-compute",
+          "name": "Pixotope Tracking Compute",
+          "collection": "PIXOTOPE",
+          "existingIconId": "server",
+          "fallbackIcon": "server",
+          "description": "Dedicated tracking computation server"
+        },
+        {
+          "id": "pixotope-control-director",
+          "name": "Pixotope Control/Director Station",
+          "collection": "PIXOTOPE",
+          "existingIconId": "desktop",
+          "fallbackIcon": "desktop",
+          "description": "Central control station for directing virtual production"
+        },
+        {
+          "id": "pixotope-server",
+          "name": "Pixotope Server",
+          "collection": "PIXOTOPE",
+          "existingIconId": "server",
+          "fallbackIcon": "server",
+          "description": "Main Pixotope application server"
+        }
+      ]
+    },
+    {
+      "id": "tracking-hardware",
+      "name": "Tracking Hardware",
+      "description": "Camera and lens tracking equipment",
+      "color": "#4ECDC4",
+      "isExpanded": false,
+      "order": 2,
+      "icons": [
+        {
+          "id": "camera-tracking-sensor",
+          "name": "Camera Tracking Sensor/Head",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-video",
+          "fallbackIcon": "cube",
+          "description": "Camera-mounted tracking sensor for position detection"
+        },
+        {
+          "id": "lens-encoder",
+          "name": "Lens Encoder",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Lens parameter encoder for focus, zoom, and iris tracking"
+        }
+      ]
+    },
+    {
+      "id": "video-infrastructure",
+      "name": "Video Infrastructure",
+      "description": "Video routing, switching, and processing equipment",
+      "color": "#45B7D1",
+      "isExpanded": false,
+      "order": 3,
+      "icons": [
+        {
+          "id": "video-router-matrix",
+          "name": "Video Router/Matrix",
+          "collection": "PIXOTOPE",
+          "existingIconId": "router",
+          "fallbackIcon": "router",
+          "description": "Video signal routing and switching matrix"
+        },
+        {
+          "id": "video-switcher",
+          "name": "Video Switcher",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-mixer",
+          "fallbackIcon": "switch-module",
+          "description": "Live video production switcher"
+        },
+        {
+          "id": "multi-viewer",
+          "name": "Multi-viewer",
+          "collection": "PIXOTOPE",
+          "existingIconId": "desktop",
+          "fallbackIcon": "desktop",
+          "description": "Multiple video source monitoring display"
+        },
+        {
+          "id": "video-converter",
+          "name": "Video Converter",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Video format and standard converter"
+        },
+        {
+          "id": "ip-video-gateway",
+          "name": "IP Video Gateway",
+          "collection": "PIXOTOPE",
+          "existingIconId": "router",
+          "fallbackIcon": "router",
+          "description": "IP-based video transport gateway"
+        }
+      ]
+    },
+    {
+      "id": "network-infrastructure",
+      "name": "Network Infrastructure",
+      "description": "Network equipment and timing systems",
+      "color": "#96CEB4",
+      "isExpanded": false,
+      "order": 4,
+      "icons": [
+        {
+          "id": "network-switch",
+          "name": "Network Switch",
+          "collection": "PIXOTOPE",
+          "existingIconId": "switch-module",
+          "fallbackIcon": "switch-module",
+          "description": "Ethernet network switching equipment"
+        },
+        {
+          "id": "network-router",
+          "name": "Network Router (Ethernet/WiFi)",
+          "collection": "PIXOTOPE",
+          "existingIconId": "router",
+          "fallbackIcon": "router",
+          "description": "Network routing for Ethernet and wireless connectivity"
+        },
+        {
+          "id": "ptp-grandmaster-clock",
+          "name": "PTP Grandmaster Clock",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-clock",
+          "fallbackIcon": "cube",
+          "description": "Precision Time Protocol master clock for network synchronization"
+        },
+        {
+          "id": "firewall",
+          "name": "Firewall",
+          "collection": "PIXOTOPE",
+          "existingIconId": "firewall",
+          "fallbackIcon": "firewall",
+          "description": "Network security firewall appliance"
+        }
+      ]
+    },
+    {
+      "id": "cameras-capture",
+      "name": "Cameras & Capture",
+      "description": "Camera systems and capture equipment",
+      "color": "#FFEAA7",
+      "isExpanded": false,
+      "order": 5,
+      "icons": [
+        {
+          "id": "broadcast-cinema-camera",
+          "name": "Broadcast/Cinema Camera",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-video",
+          "fallbackIcon": "cube",
+          "description": "Professional broadcast or cinema camera"
+        },
+        {
+          "id": "ptz-robotic-camera",
+          "name": "PTZ/Robotic Camera",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-video",
+          "fallbackIcon": "cube",
+          "description": "Pan-tilt-zoom or robotic camera system"
+        },
+        {
+          "id": "camera-ccu",
+          "name": "Camera CCU",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Camera Control Unit for remote camera operation"
+        },
+        {
+          "id": "witness-camera",
+          "name": "Witness Camera",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-video",
+          "fallbackIcon": "cube",
+          "description": "Reference camera for tracking and calibration"
+        }
+      ]
+    },
+    {
+      "id": "display-systems",
+      "name": "Display Systems",
+      "description": "LED walls, screens, and display equipment",
+      "color": "#DDA0DD",
+      "isExpanded": false,
+      "order": 6,
+      "icons": [
+        {
+          "id": "led-wall",
+          "name": "LED Wall",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-led-wall",
+          "fallbackIcon": "desktop",
+          "description": "Large LED video wall display"
+        },
+        {
+          "id": "led-floor",
+          "name": "LED Floor",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-led-floor",
+          "fallbackIcon": "cube",
+          "description": "LED floor panel display system"
+        },
+        {
+          "id": "led-processor",
+          "name": "LED Processor",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "LED display processing and control unit"
+        },
+        {
+          "id": "chroma-screen",
+          "name": "Chroma Screen",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-greenscreen",
+          "fallbackIcon": "cube",
+          "description": "Green/blue screen for chroma keying"
+        },
+        {
+          "id": "video-projector",
+          "name": "Video Projector",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Video projection system"
+        },
+        {
+          "id": "monitor",
+          "name": "Monitor",
+          "collection": "PIXOTOPE",
+          "existingIconId": "desktop",
+          "fallbackIcon": "desktop",
+          "description": "Professional video monitor"
+        }
+      ]
+    },
+    {
+      "id": "sync-timing",
+      "name": "Sync & Timing",
+      "description": "Synchronization and timing equipment",
+      "color": "#FDA7DF",
+      "isExpanded": false,
+      "order": 7,
+      "icons": [
+        {
+          "id": "sync-generator",
+          "name": "Sync Generator",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-clock",
+          "fallbackIcon": "cube",
+          "description": "Video synchronization signal generator"
+        },
+        {
+          "id": "timecode-generator",
+          "name": "Timecode Generator",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-clock",
+          "fallbackIcon": "cube",
+          "description": "SMPTE timecode generation device"
+        }
+      ]
+    },
+    {
+      "id": "control-automation",
+      "name": "Control & Automation",
+      "description": "Control systems and automation equipment",
+      "color": "#74B9FF",
+      "isExpanded": false,
+      "order": 8,
+      "icons": [
+        {
+          "id": "automation-controller",
+          "name": "Automation Controller",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Production automation control system"
+        },
+        {
+          "id": "nrcs-mos-server",
+          "name": "NRCS/MOS Server",
+          "collection": "PIXOTOPE",
+          "existingIconId": "server",
+          "fallbackIcon": "server",
+          "description": "Newsroom Computer System with MOS protocol support"
+        },
+        {
+          "id": "gpi-o-interface",
+          "name": "GPI/O Interface",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "General Purpose Input/Output interface"
+        },
+        {
+          "id": "tally-system",
+          "name": "Tally System",
+          "collection": "PIXOTOPE",
+          "existingIconId": "pixotope-light",
+          "fallbackIcon": "cube",
+          "description": "Camera tally light control system"
+        }
+      ]
+    },
+    {
+      "id": "compute-storage",
+      "name": "Compute & Storage",
+      "description": "Servers and storage systems",
+      "color": "#6C5CE7",
+      "isExpanded": false,
+      "order": 9,
+      "icons": [
+        {
+          "id": "media-server",
+          "name": "Media Server",
+          "collection": "PIXOTOPE",
+          "existingIconId": "server",
+          "fallbackIcon": "server",
+          "description": "Media processing and streaming server"
+        },
+        {
+          "id": "storage-san-nas",
+          "name": "Storage (SAN/NAS)",
+          "collection": "PIXOTOPE",
+          "existingIconId": "storage",
+          "fallbackIcon": "storage",
+          "description": "Network-attached or SAN storage system"
+        },
+        {
+          "id": "generic-server",
+          "name": "Generic Server",
+          "collection": "PIXOTOPE",
+          "existingIconId": "server",
+          "fallbackIcon": "server",
+          "description": "General purpose server system"
+        }
+      ]
+    },
+    {
+      "id": "recording-playback",
+      "name": "Recording & Playback",
+      "description": "Recording and playback systems",
+      "color": "#FD79A8",
+      "isExpanded": false,
+      "order": 10,
+      "icons": [
+        {
+          "id": "video-recorder-player",
+          "name": "Video Recorder/Player",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Video recording and playback device"
+        },
+        {
+          "id": "replay-system",
+          "name": "Replay System",
+          "collection": "PIXOTOPE",
+          "existingIconId": "server",
+          "fallbackIcon": "server",
+          "description": "Instant replay and slow-motion system"
+        },
+        {
+          "id": "clip-server",
+          "name": "Clip Server",
+          "collection": "PIXOTOPE",
+          "existingIconId": "server",
+          "fallbackIcon": "server",
+          "description": "Video clip storage and management server"
+        }
+      ]
+    },
+    {
+      "id": "streaming",
+      "name": "Streaming",
+      "description": "Live streaming equipment",
+      "color": "#00B894",
+      "isExpanded": false,
+      "order": 11,
+      "icons": [
+        {
+          "id": "streaming-encoder",
+          "name": "Streaming Encoder",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Live streaming video encoder"
+        },
+        {
+          "id": "streaming-decoder",
+          "name": "Streaming Decoder",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Streaming video decoder"
+        }
+      ]
+    },
+    {
+      "id": "power-infrastructure",
+      "name": "Power & Infrastructure",
+      "description": "Power and infrastructure equipment",
+      "color": "#E17055",
+      "isExpanded": false,
+      "order": 12,
+      "icons": [
+        {
+          "id": "ups",
+          "name": "UPS",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Uninterruptible Power Supply"
+        }
+      ]
+    },
+    {
+      "id": "virtual-production",
+      "name": "Virtual Production",
+      "description": "Virtual production specific equipment",
+      "color": "#A29BFE",
+      "isExpanded": false,
+      "order": 13,
+      "icons": [
+        {
+          "id": "motion-capture-suit",
+          "name": "Motion Capture Suit",
+          "collection": "PIXOTOPE",
+          "existingIconId": "user",
+          "fallbackIcon": "user",
+          "description": "Motion capture suit for actor tracking"
+        }
+      ]
+    },
+    {
+      "id": "generic-components",
+      "name": "Generic Components",
+      "description": "General purpose and external systems",
+      "color": "#636E72",
+      "isExpanded": false,
+      "order": 14,
+      "icons": [
+        {
+          "id": "third-party-software",
+          "name": "Third-party Software System",
+          "collection": "PIXOTOPE",
+          "existingIconId": "desktop",
+          "fallbackIcon": "desktop",
+          "description": "External software application or system"
+        },
+        {
+          "id": "cloud-service",
+          "name": "Cloud Service",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cloud",
+          "fallbackIcon": "cloud",
+          "description": "Cloud-based service or application"
+        },
+        {
+          "id": "external-system-api",
+          "name": "External System/API",
+          "collection": "PIXOTOPE",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "External system or API endpoint"
+        }
+      ]
+    },
+    {
+      "id": "isoflow-basic",
+      "name": "Basic Components",
+      "description": "Basic isometric components from ISOFLOW collection",
+      "color": "#2D3436",
+      "isExpanded": false,
+      "order": 15,
+      "icons": [
+        {
+          "id": "isoflow-server",
+          "name": "Server",
+          "collection": "ISOFLOW",
+          "existingIconId": "server",
+          "fallbackIcon": "server",
+          "description": "Generic server"
+        },
+        {
+          "id": "isoflow-desktop",
+          "name": "Desktop",
+          "collection": "ISOFLOW",
+          "existingIconId": "desktop",
+          "fallbackIcon": "desktop",
+          "description": "Desktop computer"
+        },
+        {
+          "id": "isoflow-laptop",
+          "name": "Laptop",
+          "collection": "ISOFLOW",
+          "existingIconId": "laptop",
+          "fallbackIcon": "laptop",
+          "description": "Laptop computer"
+        },
+        {
+          "id": "isoflow-router",
+          "name": "Router",
+          "collection": "ISOFLOW",
+          "existingIconId": "router",
+          "fallbackIcon": "router",
+          "description": "Network router"
+        },
+        {
+          "id": "isoflow-switch",
+          "name": "Switch",
+          "collection": "ISOFLOW",
+          "existingIconId": "switch-module",
+          "fallbackIcon": "switch-module",
+          "description": "Network switch"
+        },
+        {
+          "id": "isoflow-storage",
+          "name": "Storage",
+          "collection": "ISOFLOW",
+          "existingIconId": "storage",
+          "fallbackIcon": "storage",
+          "description": "Storage device"
+        },
+        {
+          "id": "isoflow-cloud",
+          "name": "Cloud",
+          "collection": "ISOFLOW",
+          "existingIconId": "cloud",
+          "fallbackIcon": "cloud",
+          "description": "Cloud service"
+        },
+        {
+          "id": "isoflow-firewall",
+          "name": "Firewall",
+          "collection": "ISOFLOW",
+          "existingIconId": "firewall",
+          "fallbackIcon": "firewall",
+          "description": "Firewall"
+        },
+        {
+          "id": "isoflow-user",
+          "name": "User",
+          "collection": "ISOFLOW",
+          "existingIconId": "user",
+          "fallbackIcon": "user",
+          "description": "User or person"
+        },
+        {
+          "id": "isoflow-cube",
+          "name": "Cube",
+          "collection": "ISOFLOW",
+          "existingIconId": "cube",
+          "fallbackIcon": "cube",
+          "description": "Generic cube component"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "defaultExpanded": ["pixotope-systems"],
+    "showEmptyCategories": false,
+    "enableSearch": true,
+    "enableFiltering": true,
+    "maxIconsPerCategory": 50,
+    "iconSize": {
+      "small": 32,
+      "medium": 48,
+      "large": 64
+    }
+  },
+  "metadata": {
+    "createdAt": "2025-09-25T00:00:00.000Z",
+    "lastModified": "2025-09-25T00:00:00.000Z",
+    "author": "PixoFLOW Team",
+    "version": "1.0.0"
+  }
+}
