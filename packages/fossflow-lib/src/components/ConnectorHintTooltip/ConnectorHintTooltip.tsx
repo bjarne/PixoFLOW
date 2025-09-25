@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Box, IconButton, Paper, Typography, useTheme } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import { useUiStateStore } from 'src/stores/uiStateStore';
@@ -26,6 +26,11 @@ export const ConnectorHintTooltip = ({ toolMenuRef }: Props) => {
     }
   }, []);
 
+  // Memoize the app padding to prevent theme object causing re-renders
+  const appPadding = useMemo(() => {
+    return theme.customVars?.appPadding || { x: 16, y: 16 };
+  }, [theme.customVars?.appPadding]);
+
   useEffect(() => {
     // Calculate position based on toolbar
     if (toolMenuRef?.current) {
@@ -37,13 +42,12 @@ export const ConnectorHintTooltip = ({ toolMenuRef }: Props) => {
       });
     } else {
       // Fallback position if no toolbar ref
-      const appPadding = theme.customVars?.appPadding || { x: 16, y: 16 };
       setPosition({
         top: appPadding.y + 500, // Approximate toolbar height
         right: appPadding.x
       });
     }
-  }, [toolMenuRef, theme]);
+  }, [toolMenuRef, appPadding]);
 
   const handleDismiss = () => {
     setIsDismissed(true);

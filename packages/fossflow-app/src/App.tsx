@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Isoflow, allLocales } from 'fossflow';
 import { flattenCollections } from '@isoflow/isopacks/dist/utils';
 import isoflowIsopack from '@isoflow/isopacks/dist/isoflow';
@@ -63,6 +63,7 @@ function App() {
   const [currentModel, setCurrentModel] = useState<DiagramData | null>(null); // Store current model state
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastAutoSave, setLastAutoSave] = useState<Date | null>(null);
+  const isAutoSavingRef = useRef(false);
   const [showStorageManager, setShowStorageManager] = useState(false);
   const [showDiagramManager, setShowDiagramManager] = useState(false);
   const [serverStorageAvailable, setServerStorageAvailable] = useState(false);
@@ -371,7 +372,7 @@ function App() {
     }
   };
 
-  const handleModelUpdated = (model: any) => {
+  const handleModelUpdated = useCallback((model: any) => {
     // Store the current model state whenever it updates
     // The model from Isoflow contains the COMPLETE state including all icons
     
@@ -388,7 +389,7 @@ function App() {
     setCurrentModel(updatedModel);
     setDiagramData(updatedModel);
     setHasUnsavedChanges(true);
-  };
+  }, [diagramName, defaultColors]);
 
   const exportDiagram = () => {
     // Use the most recent model data - prefer currentModel as it gets updated by handleModelUpdated
@@ -499,9 +500,10 @@ function App() {
   
   // Auto-save functionality
   useEffect(() => {
-    if (!currentModel || !hasUnsavedChanges || !currentDiagram) return;
+    if (!currentModel || !hasUnsavedChanges || !currentDiagram || isAutoSavingRef.current) return;
     
     const autoSaveTimer = setTimeout(() => {
+      isAutoSavingRef.current = true;
       // Include imported icons in auto-save
       const importedIcons = (currentModel?.icons || diagramData.icons || [])
         .filter(icon => icon.collection === 'imported');
@@ -530,8 +532,10 @@ function App() {
         localStorage.setItem('fossflow-last-opened-data', JSON.stringify(savedData));
         setLastAutoSave(new Date());
         setHasUnsavedChanges(false);
+        isAutoSavingRef.current = false;
       } catch (e) {
         console.error('Auto-save failed:', e);
+        isAutoSavingRef.current = false;
         if (e instanceof DOMException && e.name === 'QuotaExceededError') {
           alert('Storage full! Please use Storage Manager to free up space.');
           setShowStorageManager(true);
@@ -540,7 +544,7 @@ function App() {
     }, 5000); // Auto-save after 5 seconds of changes
     
     return () => clearTimeout(autoSaveTimer);
-  }, [currentModel, hasUnsavedChanges, currentDiagram, diagramName, icons]);
+  }, [currentModel, hasUnsavedChanges, currentDiagram, diagramName]);
   
   // Warn before closing if there are unsaved changes
   useEffect(() => {

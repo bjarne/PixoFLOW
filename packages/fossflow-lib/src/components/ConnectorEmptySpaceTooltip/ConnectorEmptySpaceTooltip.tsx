@@ -33,10 +33,13 @@ export const ConnectorEmptySpaceTooltip = () => {
         );
         
         if (hasEmptySpaceConnection) {
+          // Capture current mouse position when we decide to show the tooltip
+          const currentMousePosition = mouse.position.screen;
+          
           // Show tooltip near the mouse position
           setTooltipPosition({
-            x: mouse.position.screen.x,
-            y: mouse.position.screen.y
+            x: currentMousePosition.x,
+            y: currentMousePosition.y
           });
           setShowTooltip(true);
           shownForConnectorRef.current = latestConnector.id;
@@ -57,7 +60,7 @@ export const ConnectorEmptySpaceTooltip = () => {
     }
     
     previousModeRef.current = mode;
-  }, [mode, connectors, mouse.position.screen]);
+  }, [mode, connectors]);
 
   // Remove the click handler - tooltip should persist
   // It will only hide after timeout or mode change

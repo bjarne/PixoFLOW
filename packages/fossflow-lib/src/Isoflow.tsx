@@ -32,6 +32,17 @@ const App = ({
   const initialDataManager = useInitialDataManager();
   const model = useModelStore((state) => {
     return modelFromModelStore(state);
+  }, (left, right) => {
+    // Shallow equality check for the model to prevent unnecessary re-renders
+    return (
+      left.version === right.version &&
+      left.title === right.title &&
+      left.description === right.description &&
+      left.colors === right.colors &&
+      left.icons === right.icons &&
+      left.items === right.items &&
+      left.views === right.views
+    );
   });
 
   const { load } = initialDataManager;
