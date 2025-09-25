@@ -19,7 +19,8 @@
     "start": "rsbuild dev",
     "build": "rsbuild build",
     "preview": "rsbuild preview",
-    "clean": "rm -rf build"
+    "clean": "rm -rf build",
+    "generate:pixotope-icons": "node ../../scripts/generate-pixotope-icons.js"
   },
   "eslintConfig": {
     "extends": [

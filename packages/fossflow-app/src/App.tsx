@@ -2,10 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Isoflow } from 'fossflow';
 import { flattenCollections } from '@isoflow/isopacks/dist/utils';
 import isoflowIsopack from '@isoflow/isopacks/dist/isoflow';
-import awsIsopack from '@isoflow/isopacks/dist/aws';
-import gcpIsopack from '@isoflow/isopacks/dist/gcp';
-import azureIsopack from '@isoflow/isopacks/dist/azure';
-import kubernetesIsopack from '@isoflow/isopacks/dist/kubernetes';
 import pixotopeIcons from './pixotopeIcons';  // New import for custom Pixotope icons
 import { useTranslation } from 'react-i18next';
 import { DiagramData, mergeDiagramData, extractSavableData } from './diagramUtils';
@@ -23,26 +19,6 @@ const icons = (() => {
   // Add predefined isopacks safely (extract icons from pack objects and set collection names)
   if (isoflowIsopack?.icons && Array.isArray(isoflowIsopack.icons)) {
     const iconsWithCollection = isoflowIsopack.icons.map(icon => ({...icon, collection: 'ISOFLOW'}));
-    allIcons.push(...iconsWithCollection);
-  }
-  
-  if (awsIsopack?.icons && Array.isArray(awsIsopack.icons)) {
-    const iconsWithCollection = awsIsopack.icons.map(icon => ({...icon, collection: 'AWS'}));
-    allIcons.push(...iconsWithCollection);
-  }
-  
-  if (azureIsopack?.icons && Array.isArray(azureIsopack.icons)) {
-    const iconsWithCollection = azureIsopack.icons.map(icon => ({...icon, collection: 'AZURE'}));
-    allIcons.push(...iconsWithCollection);
-  }
-  
-  if (gcpIsopack?.icons && Array.isArray(gcpIsopack.icons)) {
-    const iconsWithCollection = gcpIsopack.icons.map(icon => ({...icon, collection: 'GCP'}));
-    allIcons.push(...iconsWithCollection);
-  }
-  
-  if (kubernetesIsopack?.icons && Array.isArray(kubernetesIsopack.icons)) {
-    const iconsWithCollection = kubernetesIsopack.icons.map(icon => ({...icon, collection: 'KUBERNETES'}));
     allIcons.push(...iconsWithCollection);
   }
   

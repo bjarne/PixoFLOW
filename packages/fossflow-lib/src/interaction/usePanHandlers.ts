@@ -19,6 +19,8 @@ export const usePanHandlers = () => {
         type: 'PAN',
         showCursor: false
       });
+      // Clear item controls to match manual pan tool behavior
+      uiState.actions.setItemControls(null);
     }
   }, [uiState.mode.type, uiState.actions]);
 
@@ -37,7 +39,7 @@ export const usePanHandlers = () => {
 
   // Check if click is on empty area
   const isEmptyArea = useCallback((e: SlimMouseEvent): boolean => {
-    if (!uiState.rendererEl || e.target !== uiState.rendererEl) return false;
+    if (!uiState.rendererEl || !uiState.rendererEl.contains(e.target as Node)) return false;
     
     const itemAtTile = getItemAtTile({
       tile: uiState.mouse.position.tile,
@@ -51,6 +53,23 @@ export const usePanHandlers = () => {
   const handleMouseDown = useCallback((e: SlimMouseEvent): boolean => {
     const panSettings = uiState.panSettings;
     
+    // Don't handle pan if this is not a renderer interaction (i.e., clicking on UI controls)
+    // Check if the target is within the renderer element, not just if it's exactly the renderer
+    if (!uiState.rendererEl || !uiState.rendererEl.contains(e.target as Node)) {
+      return false;
+    }
+    
+    // Check if ANY pan setting is enabled - if not, don't handle any pan interactions
+    const anyPanSettingEnabled = panSettings.middleClickPan || 
+                                 panSettings.rightClickPan || 
+                                 panSettings.ctrlClickPan || 
+                                 panSettings.altClickPan || 
+                                 panSettings.emptyAreaClickPan;
+    
+    if (!anyPanSettingEnabled) {
+      return false; // No pan settings enabled, don't handle any pan interactions
+    }
+    
     // Check for the specific button that was pressed and only handle that one
     // This fixes the issue where enabling both middle and right click causes neither to work
     
@@ -58,14 +77,14 @@ export const usePanHandlers = () => {
     if (e.button === 1 && panSettings.middleClickPan) {
       e.preventDefault();
       startPan('middle');
-      return true;
+      return true; // Pan gesture detected, but let mouse state be set
     }
     
     // Right click pan (button 2)
     if (e.button === 2 && panSettings.rightClickPan) {
       e.preventDefault();
       startPan('right');
-      return true;
+      return true; // Pan gesture detected, but let mouse state be set
     }
     
     // Left button (0) with modifiers or empty area
@@ -74,25 +93,25 @@ export const usePanHandlers = () => {
       if (panSettings.ctrlClickPan && e.ctrlKey) {
         e.preventDefault();
         startPan('ctrl');
-        return true;
+        return true; // Pan gesture detected, but let mouse state be set
       }
       
       // Alt + click pan
       if (panSettings.altClickPan && e.altKey) {
         e.preventDefault();
         startPan('alt');
-        return true;
+        return true; // Pan gesture detected, but let mouse state be set
       }
       
       // Empty area click pan
       if (panSettings.emptyAreaClickPan && isEmptyArea(e)) {
         startPan('empty');
-        return true;
+        return true; // Pan gesture detected, but let mouse state be set
       }
     }
     
     return false;
-  }, [uiState.panSettings, startPan, isEmptyArea]);
+  }, [uiState.panSettings, startPan, isEmptyArea, uiState.rendererEl]);
 
   // Enhanced mouse up handler
   const handleMouseUp = useCallback((e: SlimMouseEvent): boolean => {

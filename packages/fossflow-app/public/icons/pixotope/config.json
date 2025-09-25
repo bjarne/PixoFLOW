@@ -1,0 +1,23 @@
+{
+  "defaultSettings": {
+    "collection": "PIXOTOPE",
+    "isIsometric": true,
+    "scale": 1.0
+  },
+  "iconOverrides": {
+    "mixer.png": {
+      "name": "Audio Mixer",
+      "scale": 1.1
+    },
+    "video.png": {
+      "name": "Video Camera",
+      "scale": 0.9
+    },
+    "led_wall.png": {
+      "name": "LED Wall"
+    },
+    "led_floor.png": {
+      "name": "LED Floor"
+    }
+  }
+}

@@ -21,7 +21,7 @@ export const DEFAULT_PAN_SETTINGS: PanSettings = {
   rightClickPan: false,
   ctrlClickPan: false,
   altClickPan: false,
-  emptyAreaClickPan: true,
+  emptyAreaClickPan: false, // Disabled by default to prevent unwanted mode switching
   
   // Keyboard options
   arrowKeysPan: true,

@@ -101,7 +101,8 @@ const mousedown: ModeActionsAction = ({
 
     uiState.actions.setItemControls(null);
 
-    // Show context menu for empty space on left click
+    // Show context menu for empty space - this will be controlled by the interaction manager
+    // to only happen for left clicks, not for pan gestures
     uiState.actions.setContextMenu({
       type: 'EMPTY',
       tile: uiState.mouse.position.tile
@@ -119,7 +120,7 @@ export const Cursor: ModeActions = {
       mousedown(state);
     }
   },
-  mousemove: ({ scene, uiState }) => {
+  mousemove: ({ scene, uiState, isRendererInteraction }) => {
     if (uiState.mode.type !== 'CURSOR' || !hasMovedTile(uiState.mouse)) return;
 
     let item = uiState.mode.mousedownItem;
@@ -141,14 +142,12 @@ export const Cursor: ModeActions = {
         isInitialMovement: true
       });
     } else {
-      // If no item is being dragged and the mouse has moved, switch to PAN mode
-      // Only do this if the drag started on empty space
-      if (uiState.mouse.mousedown) {
-        uiState.actions.setMode({
-          type: 'PAN',
-          showCursor: false
-        });
-      }
+      // Automatic pan mode switching disabled - users must explicitly select pan mode
+      // This prevents unwanted mode switches when interacting with UI controls
+      // Pan mode can still be activated via:
+      // - Pan tool button in toolbar
+      // - Pan hotkey (default: Space)
+      // - Pan gestures (middle click, right click, etc. based on settings)
     }
   },
   mousedown,

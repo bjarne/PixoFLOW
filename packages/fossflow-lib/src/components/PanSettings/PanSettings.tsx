@@ -54,7 +54,7 @@ export const PanSettings = () => {
         <FormControlLabel
           control={
             <Switch
-              checked={!panSettings.middleClickPan}
+              checked={panSettings.middleClickPan}
               onChange={() => handleToggle('middleClickPan')}
             />
           }
@@ -64,7 +64,7 @@ export const PanSettings = () => {
         <FormControlLabel
           control={
             <Switch
-              checked={!panSettings.rightClickPan}
+              checked={panSettings.rightClickPan}
               onChange={() => handleToggle('rightClickPan')}
             />
           }
@@ -74,7 +74,7 @@ export const PanSettings = () => {
         <FormControlLabel
           control={
             <Switch
-              checked={!panSettings.ctrlClickPan}
+              checked={panSettings.ctrlClickPan}
               onChange={() => handleToggle('ctrlClickPan')}
             />
           }
@@ -84,7 +84,7 @@ export const PanSettings = () => {
         <FormControlLabel
           control={
             <Switch
-              checked={!panSettings.altClickPan}
+              checked={panSettings.altClickPan}
               onChange={() => handleToggle('altClickPan')}
             />
           }

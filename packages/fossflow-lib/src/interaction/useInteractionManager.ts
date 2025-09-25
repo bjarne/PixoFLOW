@@ -176,8 +176,10 @@ export const useInteractionManager = () => {
       if (!rendererRef.current) return;
 
       // Check pan handlers first
-      if (e.type === 'mousedown' && handlePanMouseDown(e)) {
-        return;
+      let panGestureDetected = false;
+      if (e.type === 'mousedown') {
+        panGestureDetected = handlePanMouseDown(e);
+        // Don't return, let event continue to set mouse state
       }
       if (e.type === 'mouseup' && handlePanMouseUp(e)) {
         return;
@@ -198,6 +200,12 @@ export const useInteractionManager = () => {
       });
 
       uiState.actions.setMouse(nextMouse);
+
+      // If a pan gesture was detected on mousedown, skip normal mode handling
+      // to prevent context menu and other cursor mode actions
+      if (e.type === 'mousedown' && panGestureDetected) {
+        return;
+      }
 
       const baseState: State = {
         model,
