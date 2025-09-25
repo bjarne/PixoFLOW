@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { Slider, Box, TextField } from '@mui/material';
+import { Slider, Box, TextField, Button, Stack } from '@mui/material';
 import { ModelItem, ViewItem } from 'src/types';
 import { MarkdownEditor } from 'src/components/MarkdownEditor/MarkdownEditor';
 import { useModelItem } from 'src/hooks/useModelItem';
@@ -71,6 +71,16 @@ export const NodeSettings = ({
     };
   }, []);
 
+  // Handle flip updates
+  const updateIconFlip = useCallback((flipProperty: 'flipX' | 'flipY', value: boolean) => {
+    const updatedIcons = icons.map(icon => 
+      icon.id === modelItem?.icon 
+        ? { ...icon, [flipProperty]: value }
+        : icon
+    );
+    modelActions.set({ icons: updatedIcons });
+  }, [icons, modelItem?.icon, modelActions]);
+
   if (!modelItem) {
     return null;
   }
@@ -120,6 +130,25 @@ export const NodeSettings = ({
           value={localScale}
           onChange={handleScaleChange}
         />
+      </Section>
+
+      <Section title="Icon flip">
+        <Stack direction="row" spacing={1}>
+          <Button 
+            variant={currentIcon?.flipX ? "contained" : "outlined"}
+            onClick={() => updateIconFlip('flipX', !currentIcon?.flipX)}
+            size="small"
+          >
+            Flip X
+          </Button>
+          <Button 
+            variant={currentIcon?.flipY ? "contained" : "outlined"}
+            onClick={() => updateIconFlip('flipY', !currentIcon?.flipY)}
+            size="small"
+          >
+            Flip Y
+          </Button>
+        </Stack>
       </Section>
       <Section>
         <Box>

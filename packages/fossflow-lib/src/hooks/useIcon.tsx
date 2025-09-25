@@ -32,6 +32,8 @@ export const useIcon = (id: string | undefined) => {
       <IsometricIcon
         url={icon.url}
         scale={icon.scale || 1}
+        flipX={icon.flipX || false}
+        flipY={icon.flipY || false}
         onImageLoaded={() => {
           setHasLoaded(true);
         }}

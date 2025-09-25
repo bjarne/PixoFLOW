@@ -9,6 +9,10 @@ interface Props {
 }
 
 export const NonIsometricIcon = ({ icon }: Props) => {
+  const flipX = icon.flipX || false;
+  const flipY = icon.flipY || false;
+  const flipTransform = `scaleX(${flipX ? -1 : 1}) scaleY(${flipY ? -1 : 1})`;
+  
   return (
     <Box sx={{ pointerEvents: 'none' }}>
       <Box
@@ -24,7 +28,10 @@ export const NonIsometricIcon = ({ icon }: Props) => {
           component="img"
           src={icon.url}
           alt={`icon-${icon.id}`}
-          sx={{ width: PROJECTED_TILE_SIZE.width * 0.7 * (icon.scale || 1) }}
+          sx={{ 
+            width: PROJECTED_TILE_SIZE.width * 0.7 * (icon.scale || 1),
+            transform: flipTransform
+          }}
         />
       </Box>
     </Box>

@@ -5,6 +5,17 @@ describe('iconSchema', () => {
     const valid = { id: 'icon1', name: 'Icon', url: 'http://test.com' };
     expect(iconSchema.safeParse(valid).success).toBe(true);
   });
+  
+  it('validates an icon with flip properties', () => {
+    const validWithFlip = { 
+      id: 'icon1', 
+      name: 'Icon', 
+      url: 'http://test.com',
+      flipX: true,
+      flipY: false
+    };
+    expect(iconSchema.safeParse(validWithFlip).success).toBe(true);
+  });
   it('fails if required fields are missing', () => {
     const invalid = { name: 'Icon' };
     const result = iconSchema.safeParse(invalid);

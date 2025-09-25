@@ -7,7 +7,9 @@ export const iconSchema = z.object({
   url: z.string(),
   collection: constrainedStrings.name.optional(),
   isIsometric: z.boolean().optional(),
-  scale: z.number().min(0.1).max(3).optional()
+  scale: z.number().min(0.1).max(3).optional(),
+  flipX: z.boolean().optional(),
+  flipY: z.boolean().optional()
 });
 
 export const iconsSchema = z.array(iconSchema);
