@@ -28,7 +28,20 @@ FossFLOW is a powerful, open-source Progressive Web App (PWA) for creating beaut
 - **📝 [FOSSFLOW_TODO.md](https://github.com/stan-smith/FossFLOW/blob/master/ISOFLOW_TODO.md)** - Current issues and roadmap with codebase mappings, most gripes are with the isoflow library itself.
 - **🤝 [CONTRIBUTORS.md](https://github.com/stan-smith/FossFLOW/blob/master/CONTRIBUTORS.md)** - How to contribute to the project.
 
-## Recent Updates (August 2025)
+## Recent Updates (September 2025)
+
+### Professional Icon Menu Organization
+- **Categorized Icon Library** - Icons organized into 15 professional categories for broadcast/virtual production workflows
+- **Industry-Standard Categories** - Pixotope Systems, Video Infrastructure, Network Infrastructure, Cameras & Capture, Display Systems, and more
+- **Smart Icon Mapping** - Automatically maps existing ISOFLOW and Pixotope icons to appropriate categories
+- **JSON-Based Configuration** - Easily customizable icon organization via `iconMenuConfig.json`
+- **Intelligent Default Naming** - Placed nodes automatically use descriptive names (e.g., "Media Server" instead of "Untitled")
+
+### Enhanced User Experience
+- **Professional Workflow** - Icon categories match real-world broadcast and virtual production setups
+- **Faster Asset Discovery** - Find the right component quickly with logical categorization
+- **Consistent Naming** - No more manual renaming - components get meaningful names automatically
+- **Scalable Architecture** - Easy to add new categories and icons as needed
 
 ### Improved Connector Tool
 - **Click-based Creation** - New default mode: click first node, then second node to connect
@@ -77,6 +90,8 @@ FossFLOW is a powerful, open-source Progressive Web App (PWA) for creating beaut
 ## Features
 
 - 🎨 **Isometric Diagramming** - Create stunning 3D-style technical diagrams
+- 📚 **Professional Icon Library** - 15 organized categories for broadcast/virtual production workflows
+- 🏷️ **Smart Node Naming** - Components automatically get descriptive names (e.g., "Media Server", "LED Wall")
 - 💾 **Auto-Save** - Your work is automatically saved every 5 seconds
 - 📱 **PWA Support** - Install as a native app on Mac and Linux
 - 🔒 **Privacy-First** - All data stored locally in your browser
@@ -157,8 +172,10 @@ npm run publish:lib  # Publish library to npm
 ### Creating Diagrams
 
 1. **Add Items**:
-   - Press the "+" button on the top right menu, the library of components will appear on the left
-   - Drag and drop components from the library onto the canvas
+   - Press the "+" button on the top right menu to open the organized component library
+   - Browse 15 professional categories: Pixotope Systems, Video Infrastructure, Network Infrastructure, Cameras & Capture, Display Systems, and more
+   - Click any component (e.g., "Media Server", "LED Wall", "Camera CCU") to place it
+   - Components automatically get descriptive names - no more "Untitled" nodes!
    - Or right-click on the grid and select "Add node"
 
 2. **Connect Items**: 

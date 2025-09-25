@@ -23,7 +23,7 @@ export const PlaceIcon: ModeActions = {
       uiState.actions.setItemControls(null);
     }
   },
-  mouseup: ({ uiState, scene }) => {
+  mouseup: ({ uiState, scene, model }) => {
     if (uiState.mode.type !== 'PLACE_ICON') return;
 
     if (uiState.mode.id !== null) {
@@ -37,10 +37,23 @@ export const PlaceIcon: ModeActions = {
       if (targetTile) {
         const modelItemId = generateId();
 
+        // Look up the icon to get its name for a better default
+        const iconData = model.icons.find(icon => icon.id === uiState.mode.id);
+        const defaultName = iconData?.name || 'Untitled';
+        
+        // Debug logging to understand the issue
+        console.log('🔍 PlaceIcon Debug:', {
+          modeId: uiState.mode.id,
+          foundIcon: iconData ? { id: iconData.id, name: iconData.name } : null,
+          defaultName,
+          totalIcons: model.icons.length,
+          sampleIcons: model.icons.slice(0, 3).map(icon => ({ id: icon.id, name: icon.name }))
+        });
+
         scene.placeIcon({
           modelItem: {
             id: modelItemId,
-            name: 'Untitled',
+            name: defaultName,
             icon: uiState.mode.id
           },
           viewItem: {

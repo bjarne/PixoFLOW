@@ -54,10 +54,13 @@ export const ContextMenuManager = ({ anchorEl }: Props) => {
                 // Find nearest unoccupied tile (should return the same tile since context menu is for empty tiles)
                 const targetTile = findNearestUnoccupiedTile(contextMenu.tile, scene) || contextMenu.tile;
 
+                // Use the icon's name as the default name
+                const defaultName = firstIcon.name || 'Untitled';
+
                 scene.placeIcon({
                   modelItem: {
                     id: modelItemId,
-                    name: 'Untitled',
+                    name: defaultName,
                     icon: firstIcon.id
                   },
                   viewItem: {

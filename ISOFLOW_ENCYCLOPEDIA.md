@@ -135,6 +135,42 @@ fossflow-monorepo/
 
 The FossFLOW application is a Progressive Web App (PWA) built with RSBuild that provides a complete diagram editor interface using the fossflow-lib library.
 
+### Icon Menu Configuration System
+
+#### Configuration File (`packages/fossflow-app/src/iconMenuConfig.json`)
+- **Purpose**: Organizes icons into professional categories for broadcast/virtual production workflows
+- **Structure**: JSON-based configuration with 15 predefined categories
+- **Schema**: Validated by `iconMenuConfig.schema.json` for IDE support and type safety
+
+#### Categories
+1. **Pixotope Systems** - Core Pixotope components (Graphics Compute, Tracking Compute, Control/Director, Server)
+2. **Tracking Hardware** - Camera sensors, lens encoders
+3. **Video Infrastructure** - Routers, switchers, multi-viewers, converters, IP gateways
+4. **Network Infrastructure** - Switches, routers, PTP clocks, firewalls
+5. **Cameras & Capture** - Broadcast cameras, PTZ, CCU, witness cameras
+6. **Display Systems** - LED walls/floors, chroma screens, projectors, monitors
+7. **Sync & Timing** - Sync generators, timecode generators
+8. **Control & Automation** - Controllers, NRCS/MOS, GPI/O, tally systems
+9. **Compute & Storage** - Media servers, SAN/NAS, generic servers
+10. **Recording & Playback** - Recorders, replay systems, clip servers
+11. **Streaming** - Encoders, decoders
+12. **Power & Infrastructure** - UPS systems
+13. **Virtual Production** - Motion capture suits
+14. **Generic Components** - Third-party software, cloud services, APIs
+15. **Basic Components** - Core ISOFLOW collection icons
+
+#### Service Layer (`packages/fossflow-app/src/services/iconMenuConfigService.ts`)
+- **Icon Resolution**: Maps configured icons to actual icon assets from ISOFLOW/PIXOTOPE collections
+- **Fallback System**: Provides backup icons when primary icons aren't available
+- **Collection Mapping**: Modifies icon collection names to match category names
+- **Validation**: Ensures all configured icons can be resolved
+
+#### React Integration (`packages/fossflow-app/src/hooks/useIconMenuConfig.ts`)
+- **Hook-based API**: Provides React components access to configured icons
+- **Initialization Management**: Handles loading state and configuration readiness
+- **Search Functionality**: Enables searching across all configured categories
+- **Category Filtering**: Supports filtering icons by category
+
 ### Key Components
 
 #### App Entry (`packages/fossflow-app/src/index.tsx`)
@@ -156,6 +192,9 @@ The FossFLOW application is a Progressive Web App (PWA) built with RSBuild that 
 
 ### App Features
 
+- **Professional Icon Organization**: 15 categorized icon groups for broadcast/virtual production
+- **Smart Node Naming**: Components automatically get descriptive names based on icon selection
+- **JSON-Based Icon Configuration**: Customizable icon organization via `iconMenuConfig.json`
 - **Auto-Save**: Saves diagram to session storage every 5 seconds
 - **Import/Export**: JSON file format for diagram sharing
 - **PWA Support**: Installable on desktop and mobile
@@ -402,7 +441,7 @@ npm run dev
 **Interaction Modes** (`/modes/`):
 - `Cursor.ts`: Selection mode
 - `Pan.ts`: Canvas panning
-- `PlaceIcon.ts`: Icon placement
+- `PlaceIcon.ts`: Icon placement with smart naming (uses icon name as default node name)
 - `Connector.ts`: Drawing connections
 - `DragItems.ts`: Moving elements
 - `Rectangle/`: Rectangle tools
@@ -470,7 +509,10 @@ The undo/redo system uses a transaction-based approach to ensure atomic operatio
 
 ### Need to modify...
 
+**Icon categories/organization?** → `/packages/fossflow-app/src/iconMenuConfig.json`
+**Icon menu configuration logic?** → `/packages/fossflow-app/src/services/iconMenuConfigService.ts`
 **Icons?** → `/src/components/ItemControls/IconSelectionControls/`
+**Node naming behavior?** → `/src/interaction/modes/PlaceIcon.ts`
 **Node rendering?** → `/src/components/SceneLayers/Nodes/`
 **Connector drawing?** → `/src/components/SceneLayers/Connectors/`
 **Zoom behavior?** → `/src/stores/uiStateStore.tsx` + `/src/components/ZoomControls/`
@@ -498,6 +540,9 @@ The undo/redo system uses a transaction-based approach to ensure atomic operatio
 |---------|-----------|
 | Main entry | `/src/Isoflow.tsx` |
 | Configuration | `/src/config.ts` |
+| Icon menu config | `/packages/fossflow-app/src/iconMenuConfig.json` |
+| Icon config service | `/packages/fossflow-app/src/services/iconMenuConfigService.ts` |
+| Icon config hook | `/packages/fossflow-app/src/hooks/useIconMenuConfig.ts` |
 | Model types | `/src/types/model.ts` |
 | UI state types | `/src/types/ui.ts` |
 | Model store | `/src/stores/modelStore.tsx` |
@@ -506,6 +551,7 @@ The undo/redo system uses a transaction-based approach to ensure atomic operatio
 | Main renderer | `/src/components/Renderer/Renderer.tsx` |
 | UI overlay | `/src/components/UiOverlay/UiOverlay.tsx` |
 | Interaction manager | `/src/interaction/useInteractionManager.ts` |
+| Icon placement logic | `/src/interaction/modes/PlaceIcon.ts` |
 | Coordinate utils | `/src/utils/CoordsUtils.ts` |
 | Public API hook | `/src/hooks/useIsoflow.ts` |
 

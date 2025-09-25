@@ -175,8 +175,9 @@ class IconMenuConfigService {
       if (existingIcon) {
         return {
           ...existingIcon,
-          // Override with config-specific properties if needed
-          name: iconConfig.name || existingIcon.name,
+          // Use the configured ID and name, not the existing icon's
+          id: iconConfig.id,
+          name: iconConfig.name,
         };
       } else {
         console.warn(`Existing icon not found: ${iconConfig.existingIconId} for ${iconConfig.name}`);
@@ -190,7 +191,9 @@ class IconMenuConfigService {
         console.log(`Using fallback icon ${iconConfig.fallbackIcon} for ${iconConfig.name}`);
         return {
           ...fallbackIcon,
-          name: iconConfig.name || fallbackIcon.name,
+          // Use the configured ID and name, not the fallback icon's
+          id: iconConfig.id,
+          name: iconConfig.name,
         };
       } else {
         console.warn(`Fallback icon not found: ${iconConfig.fallbackIcon} for ${iconConfig.name}`);
