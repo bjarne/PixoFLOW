@@ -38,91 +38,465 @@ Each item is an array with 3 elements:
 ### Views Array (`v`)
 Each view contains:
 1. **Positions Array**: `[[itemIndex, x, y], ...]` - Position of each item
-2. **Connections Array**: `[[fromIndex, toIndex], ...]` - Connections between items
+2. **Connections Array**: Connection definitions (see Connection Formats below)
 
-## Pixotope-Specific Icons
+## Available Icons for Pixotope Diagrams
 
-### Core Pixotope Systems
-- `pixotope-graphics-compute` - Graphics rendering engine
-- `pixotope-tracking-compute` - Tracking computation server
-- `pixotope-control-director` - Control/Director station
-- `pixotope-server` - Main Pixotope server
+**IMPORTANT**: Use only the icon IDs listed below. These correspond to actual icons available in the system.
 
-### Tracking Hardware
-- `camera-tracking-sensor` - Camera-mounted tracking (Zone, Fly, Vision)
-- `lens-encoder` - FIZ lens encoding system
+### PIXOTOPE Collection Icons
+- `pixotope-clock` - Timing and sync devices (`/icons/pixotope/clock.png`)
+- `pixotope-greenscreen` - Green/blue screens for chroma keying (`/icons/pixotope/greenscreen.png`)
+- `pixotope-led-floor` - LED floor panel systems (`/icons/pixotope/led_floor.png`)
+- `pixotope-led-wall` - LED video walls and displays (`/icons/pixotope/led_wall.png`)
+- `pixotope-light` - Lighting and tally systems (`/icons/pixotope/light.png`)
+- `pixotope-mixer` - Audio/video mixing equipment (`/icons/pixotope/mixer.png`)
+- `pixotope-video` - Cameras and video equipment (`/icons/pixotope/video.png`)
 
-### Video Infrastructure
-- `video-router-matrix` - SDI/IP routing matrix
-- `video-switcher` - Production switcher
-- `multi-viewer` - Multi-source monitoring
-- `video-converter` - Format/standard converter
-- `ip-video-gateway` - SMPTE ST 2110 gateway
+### ISOFLOW Collection Icons (Basic Components)
+- `server` - Servers and compute systems (graphics, tracking, media, etc.)
+- `desktop` - Desktop computers and workstations
+- `laptop` - Laptop computers
+- `router` - Network routers and gateways
+- `switch-module` - Network switches
+- `storage` - Storage systems (SAN/NAS)
+- `cloud` - Cloud services
+- `firewall` - Security appliances
+- `user` - People and operators
+- `cube` - Generic equipment and components
 
-### Network Infrastructure
-- `network-switch` - Managed Ethernet switch
-- `network-router` - Network routing
-- `ptp-grandmaster-clock` - PTP timing source
-- `firewall` - Security appliance
+## Icon Usage Guidelines
 
-### Camera Systems
-- `broadcast-cinema-camera` - Professional camera
-- `ptz-robotic-camera` - PTZ/robotic camera
-- `camera-ccu` - Camera Control Unit
-- `witness-camera` - Reference/calibration camera
+### Pixotope System Components
+- **Graphics Compute**: Use `server`
+- **Tracking Compute**: Use `server`
+- **Control/Director Station**: Use `desktop`
+- **Cameras**: Use `pixotope-video`
+- **LED Walls**: Use `pixotope-led-wall`
+- **LED Floors**: Use `pixotope-led-floor`
+- **Green Screens**: Use `pixotope-greenscreen`
+- **Sync/Timing**: Use `pixotope-clock`
+- **Switchers/Mixers**: Use `pixotope-mixer`
+- **Tally Systems**: Use `pixotope-light`
 
-### Display Systems
-- `led-wall` - LED volume/wall
-- `led-floor` - LED floor panels
-- `led-processor` - LED control processor
-- `chroma-screen` - Green/blue screen
-- `video-projector` - Projection system
-- `monitor` - Professional monitor
+### Infrastructure Components
+- **Network Switches**: Use `switch-module`
+- **Routers/Gateways**: Use `router`
+- **Storage Systems**: Use `storage`
+- **Generic Servers**: Use `server`
+- **Monitors/Displays**: Use `desktop`
+- **Cloud Services**: Use `cloud`
+- **Firewalls**: Use `firewall`
+- **Generic Equipment**: Use `cube`
+- **Operators**: Use `user`
 
-### Sync & Timing
-- `sync-generator` - Black burst/tri-level sync
-- `timecode-generator` - SMPTE timecode
+## Connection Formats
 
-### Control & Automation
-- `automation-controller` - Production automation
-- `nrcs-mos-server` - Newsroom/MOS integration
-- `gpi-o-interface` - GPI/O control
-- `tally-system` - Tally light control
+### Current Connection Format (Required)
+The system currently supports only the basic connection format:
+```json
+[[fromIndex, toIndex], [fromIndex, toIndex]]
+```
 
-### Storage & Compute
-- `media-server` - Media processing server
-- `storage-san-nas` - Shared storage system
-- `generic-server` - Generic compute server
+### Enhanced Connection Format (Future Feature)
+**Note: This enhanced format is not yet implemented in the system.** 
+For future professional broadcast diagrams with signal labeling, the proposed enhanced format would be:
+```json
+[
+  {
+    "from": fromIndex,
+    "to": toIndex,
+    "startLabel": "OUT 1", 
+    "endLabel": "IN 3",
+    "description": "SDI",
+    "color": "red",
+    "style": "SOLID",
+    "lineType": "SINGLE",
+    "width": 12
+  }
+]
+```
 
-### Recording & Playback
-- `video-recorder-player` - Recording device
-- `replay-system` - Instant replay
-- `clip-server` - Clip management
+### Connection Properties
 
-### Streaming
-- `streaming-encoder` - Live encoder
-- `streaming-decoder` - Stream decoder
+#### Labels
+- **`startLabel`** (string): Port/connector label at source (e.g., "OUT 1", "TX", "A")
+- **`endLabel`** (string): Port/connector label at destination (e.g., "IN 3", "RX", "B")  
+- **`description`** (string): Signal type in center of line (e.g., "SDI", "ST 2110", "SRT")
 
-### Infrastructure
-- `ups` - Uninterruptible power supply
-- `motion-capture-suit` - Motion capture system
+#### Visual Styling
+- **`color`** (string): Line color - `"red"`, `"blue"`, `"green"`, `"orange"`, `"purple"`, `"gray"`
+- **`style`** (string): Line pattern - `"SOLID"`, `"DOTTED"`, `"DASHED"`
+- **`lineType`** (string): Line structure - `"SINGLE"`, `"DOUBLE"`, `"DOUBLE_WITH_CIRCLE"`
+- **`width`** (number): Line thickness (8-16 recommended)
 
-### Generic/External
-- `third-party-software` - External software
-- `cloud-service` - Cloud-based service
-- `external-system-api` - External API/system
+#### Label Heights (Optional)
+- **`startLabelHeight`** (number): Height of start label line (0-40)
+- **`centerLabelHeight`** (number): Height of center label line (0-40)  
+- **`endLabelHeight`** (number): Height of end label line (0-40)
 
-### Basic ISOFLOW Icons (Fallbacks)
-- `server` - Generic server
-- `desktop` - Desktop computer
-- `laptop` - Laptop computer
-- `router` - Network router
-- `switch-module` - Network switch
-- `storage` - Storage device
-- `cloud` - Cloud service
-- `firewall` - Firewall
-- `user` - User/person
-- `cube` - Generic component
+### Broadcast Connection Standards
+
+#### Signal Type Colors
+- **SDI Video**: `"red"` - Professional video signals
+- **IP/Ethernet**: `"blue"` - Network data, ST 2110, SMPTE 2022
+- **Streaming**: `"purple"` - SRT, RTMP, WebRTC
+- **Control**: `"green"` - GPI/O, serial, automation
+- **Audio**: `"orange"` - AES, analog audio
+- **Sync/Clock**: `"gray"` - Genlock, PTP, timecode
+
+#### Connection Reliability
+- **Primary/Main**: `"SOLID"` style
+- **Backup/Secondary**: `"DASHED"` style  
+- **Optional/Failover**: `"DOTTED"` style
+
+#### Signal Complexity
+- **Single Signal**: `"SINGLE"` lineType
+- **Bidirectional**: `"DOUBLE"` lineType
+- **Multiple Streams/Channels**: `"DOUBLE_WITH_CIRCLE"` lineType (use center label to indicate count)
+
+### Connection Examples
+
+#### SDI Video Connection
+```json
+{
+  "from": 0,
+  "to": 1, 
+  "startLabel": "SDI OUT 1",
+  "endLabel": "SDI IN A",
+  "description": "3G-SDI",
+  "color": "red",
+  "style": "SOLID",
+  "lineType": "SINGLE",
+  "width": 12
+}
+```
+
+#### ST 2110 IP Video
+```json
+{
+  "from": 2,
+  "to": 3,
+  "startLabel": "25G",
+  "endLabel": "25G",
+  "description": "ST 2110",
+  "color": "blue", 
+  "style": "SOLID",
+  "lineType": "DOUBLE",
+  "width": 14
+}
+```
+
+#### SRT Streaming
+```json
+{
+  "from": 4,
+  "to": 5,
+  "startLabel": "WAN",
+  "endLabel": "WAN", 
+  "description": "SRT",
+  "color": "purple",
+  "style": "SOLID", 
+  "lineType": "SINGLE",
+  "width": 10
+}
+```
+
+#### Backup Connection
+```json
+{
+  "from": 6,
+  "to": 7,
+  "startLabel": "BACKUP",
+  "endLabel": "BACKUP",
+  "description": "SDI",
+  "color": "red",
+  "style": "DASHED",
+  "lineType": "SINGLE", 
+  "width": 10
+}
+```
+
+#### Control/GPI
+```json
+{
+  "from": 8,
+  "to": 9,
+  "startLabel": "GPI 1",
+  "endLabel": "TALLY",
+  "description": "Control",
+  "color": "green",
+  "style": "SOLID",
+  "lineType": "SINGLE",
+  "width": 8
+}
+```
+
+#### Multiple SDI Streams
+```json
+{
+  "from": 0,
+  "to": 1,
+  "startLabel": "SDI 1-4",
+  "endLabel": "IN 1-4",
+  "description": "4x 3G-SDI",
+  "color": "red",
+  "style": "SOLID",
+  "lineType": "DOUBLE_WITH_CIRCLE",
+  "width": 16
+}
+```
+
+#### Multiple IP Streams
+```json
+{
+  "from": 2,
+  "to": 3,
+  "startLabel": "25G",
+  "endLabel": "25G",
+  "description": "8x ST 2110",
+  "color": "blue",
+  "style": "SOLID",
+  "lineType": "DOUBLE_WITH_CIRCLE",
+  "width": 18
+}
+```
+
+## Multiple Stream Connections
+
+### When Multiple Signals Use the Same Path
+Use `"DOUBLE_WITH_CIRCLE"` lineType when multiple video/data streams travel between the same two devices:
+
+#### Common Scenarios:
+- **4x SDI outputs** from Pixotope graphics engine to video router
+- **Multiple ST 2110 streams** over single network connection  
+- **Multi-channel audio** feeds
+- **Parallel data streams** between servers
+
+#### Labeling Convention:
+- **Start/End Labels**: Show port ranges (e.g., "SDI 1-4", "IN A-D", "CH 1-8")
+- **Description**: Include count and signal type (e.g., "4x 3G-SDI", "8x ST 2110", "16x AES")
+- **Width**: Use wider lines (16-20) to indicate higher bandwidth
+
+#### Multiple Stream Examples:
+
+**Pixotope to Router (4x SDI)**
+```json
+{
+  "from": 0,
+  "to": 1,
+  "startLabel": "SDI 1-4",
+  "endLabel": "IN 1-4", 
+  "description": "4x 3G-SDI",
+  "color": "red",
+  "style": "SOLID",
+  "lineType": "DOUBLE_WITH_CIRCLE",
+  "width": 16
+}
+```
+
+**Graphics Server to LED Processor (8x Streams)**
+```json
+{
+  "from": 2,
+  "to": 3,
+  "startLabel": "DP 1-4",
+  "endLabel": "IN A-H",
+  "description": "8x 4K Feeds",
+  "color": "red", 
+  "style": "SOLID",
+  "lineType": "DOUBLE_WITH_CIRCLE",
+  "width": 18
+}
+```
+
+**Network Multi-Stream (ST 2110)**
+```json
+{
+  "from": 4,
+  "to": 5,
+  "startLabel": "25G",
+  "endLabel": "25G",
+  "description": "12x ST 2110",
+  "color": "blue",
+  "style": "SOLID", 
+  "lineType": "DOUBLE_WITH_CIRCLE",
+  "width": 20
+}
+```
+
+## Two Available Formats
+
+The system supports two different diagram formats:
+
+### 1. Compact Format (For LLM Generation)
+**Limitation**: Only supports basic `[[fromIndex, toIndex]]` connections
+**Use case**: Token-efficient LLM generation, simple diagrams
+
+```json
+{
+  "t": "Diagram Title",
+  "i": [["Item 1", "server", "Description"]],
+  "v": [
+    [
+      [[0, -4, 0], [1, 0, 0]],  // Positions
+      [[0, 1]]                  // Basic connections only
+    ]
+  ],
+  "_": { "f": "compact", "v": "1.0" }
+}
+```
+
+### 2. Full Format (Complete Feature Support)
+**Capability**: Full support for connection labels, colors, line types, etc.
+**Use case**: Professional broadcast diagrams, detailed documentation
+
+**Icon URL Requirements**:
+- **PIXOTOPE icons**: Use `/icons/pixotope/{filename}.png` (e.g., `/icons/pixotope/video.png`)
+- **ISOFLOW icons**: Use base64 encoded SVG data (as exported by the system)
+
+```json
+{
+  "title": "Diagram Title",
+  "items": [...],
+  "views": [{
+    "connectors": [{
+      "description": "SDI",
+      "startLabel": "OUT 1", 
+      "endLabel": "IN 3",
+      "color": "red",
+      "style": "SOLID",
+      "lineType": "SINGLE",
+      "width": 12
+    }]
+  }]
+}
+```
+
+## Enhanced Connection Format (Full Format Only)
+
+### Use Basic Format When:
+- Creating simple overview diagrams
+- Showing logical relationships only
+- Token count is critical
+- Signal types are obvious from context
+
+### Use Enhanced Format When:
+- Creating professional broadcast documentation
+- Showing specific port connections
+- Multiple signal types are present
+- Backup/redundancy paths exist
+- Diagram will be used for installation/maintenance
+- Color coding improves clarity
+
+## Full Format Example with Enhanced Connections
+
+Based on the actual system capabilities, here's how to create professional broadcast diagrams:
+
+```json
+{
+  "title": "Professional Broadcast Setup",
+  "icons": [
+    {
+      "id": "pixotope-video",
+      "name": "pixotope-video", 
+      "url": "/icons/pixotope/video.png",
+      "isIsometric": true
+    },
+    {
+      "id": "server",
+      "name": "server",
+      "url": "data:image/svg+xml;base64,...",
+      "collection": "isoflow",
+      "isIsometric": true
+    }
+  ],
+  "colors": [
+    {
+      "id": "red",
+      "value": "#ff0000"
+    },
+    {
+      "id": "blue", 
+      "value": "#0000ff"
+    }
+  ],
+  "items": [
+    {
+      "id": "camera-1",
+      "name": "Studio Camera",
+      "icon": "pixotope-video"
+    },
+    {
+      "id": "graphics-1",
+      "name": "Graphics Engine", 
+      "icon": "server"
+    }
+  ],
+  "views": [{
+    "name": "Main View",
+    "items": [
+      {
+        "id": "camera-1",
+        "tile": { "x": -4, "y": 0 },
+        "labelHeight": 80
+      },
+      {
+        "id": "graphics-1", 
+        "tile": { "x": 4, "y": 0 },
+        "labelHeight": 80
+      }
+    ],
+    "connectors": [
+      {
+        "id": "conn-1",
+        "color": "red",
+        "description": "4x 3G-SDI",
+        "startLabel": "SDI 1-4",
+        "endLabel": "IN A-D", 
+        "width": 16,
+        "style": "SOLID",
+        "lineType": "DOUBLE_WITH_CIRCLE",
+        "anchors": [
+          {
+            "id": "anchor-1",
+            "ref": { "item": "camera-1" }
+          },
+          {
+            "id": "anchor-2", 
+            "ref": { "item": "graphics-1" }
+          }
+        ]
+      }
+    ],
+    "rectangles": [],
+    "textBoxes": []
+  }]
+}
+```
+
+### Mixed Format Example
+You can mix both formats in the same diagram:
+```json
+"v": [
+  [
+    [[0, -4, 0], [1, 0, 0], [2, 4, 0]],
+    [
+      [0, 1],  // Simple connection
+      {        // Enhanced connection
+        "from": 1,
+        "to": 2,
+        "startLabel": "OUT 1",
+        "endLabel": "IN A",
+        "description": "SDI",
+        "color": "red",
+        "style": "SOLID",
+        "width": 12
+      }
+    ]
+  ]
+]
+```
 
 ## Positioning Guidelines for Broadcast Workflows
 
@@ -173,25 +547,150 @@ Input Sources → Processing → Output/Display
 
 ## Pixotope-Specific Examples
 
-### Example 1: Basic Virtual Studio
+### Example 1: Basic Virtual Studio (Simple Format)
 
 ```json
 {
   "t": "Virtual Studio Setup",
   "i": [
-    ["Studio Camera", "broadcast-cinema-camera", "Main broadcast camera with tracking"],
-    ["Tracking Sensor", "camera-tracking-sensor", "Pixotope Zone tracking head"],
-    ["Green Screen", "chroma-screen", "12x8m green screen backdrop"],
-    ["Tracking Compute", "pixotope-tracking-compute", "Pixotope tracking server"],
-    ["Graphics Compute", "pixotope-graphics-compute", "UE5 rendering engine"],
-    ["Video Switcher", "video-switcher", "Production switcher"],
-    ["PGM Monitor", "monitor", "Program output monitor"],
-    ["Network Switch", "network-switch", "10GbE managed switch"]
+    ["Studio Camera", "pixotope-video", "Main broadcast camera with tracking"],
+    ["Tracking Sensor", "cube", "Pixotope Zone tracking head"],
+    ["Green Screen", "pixotope-greenscreen", "12x8m green screen backdrop"],
+    ["Tracking Compute", "server", "Pixotope tracking server"],
+    ["Graphics Compute", "server", "UE5 rendering engine"],
+    ["Video Switcher", "pixotope-mixer", "Production switcher"],
+    ["PGM Monitor", "desktop", "Program output monitor"],
+    ["Network Switch", "switch-module", "10GbE managed switch"]
   ],
   "v": [
     [
       [[0, -6, -4], [1, -6, 0], [2, 0, -6], [3, -2, 2], [4, 2, 2], [5, 6, 0], [6, 10, 0], [7, 0, 6]],
       [[0, 1], [1, 3], [3, 4], [0, 5], [4, 5], [5, 6], [3, 7], [4, 7], [5, 7]]
+    ]
+  ],
+  "_": { "f": "compact", "v": "1.0" }
+}
+```
+
+### Example 1b: Virtual Studio (Proposed Enhanced Format - Not Yet Implemented)
+
+```json
+{
+  "t": "Virtual Studio with Signal Labels",
+  "i": [
+    ["Studio Camera", "pixotope-video", "Main broadcast camera with tracking"],
+    ["Tracking Sensor", "cube", "Pixotope Zone tracking head"],
+    ["Green Screen", "pixotope-greenscreen", "12x8m green screen backdrop"],
+    ["Tracking Compute", "server", "Pixotope tracking server"],
+    ["Graphics Compute", "server", "UE5 rendering engine"],
+    ["Video Switcher", "pixotope-mixer", "Production switcher"],
+    ["PGM Monitor", "desktop", "Program output monitor"],
+    ["Network Switch", "switch-module", "10GbE managed switch"]
+  ],
+  "v": [
+    [
+      [[0, -6, -4], [1, -6, 0], [2, 0, -6], [3, -2, 2], [4, 2, 2], [5, 6, 0], [6, 10, 0], [7, 0, 6]],
+      [
+        {
+          "from": 0,
+          "to": 1,
+          "startLabel": "SYNC",
+          "endLabel": "CAM",
+          "description": "Tracking",
+          "color": "green",
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "width": 8
+        },
+        {
+          "from": 1,
+          "to": 3,
+          "startLabel": "DATA",
+          "endLabel": "ETH",
+          "description": "Position",
+          "color": "blue",
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "width": 10
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "startLabel": "OUT",
+          "endLabel": "IN",
+          "description": "Tracking",
+          "color": "blue",
+          "style": "SOLID",
+          "lineType": "DOUBLE",
+          "width": 12
+        },
+        {
+          "from": 0,
+          "to": 5,
+          "startLabel": "SDI OUT",
+          "endLabel": "SDI 1",
+          "description": "3G-SDI",
+          "color": "red",
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "width": 12
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "startLabel": "SDI 1-4",
+          "endLabel": "IN A-D",
+          "description": "4x Graphics",
+          "color": "red",
+          "style": "SOLID",
+          "lineType": "DOUBLE_WITH_CIRCLE",
+          "width": 16
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "startLabel": "PGM",
+          "endLabel": "INPUT",
+          "description": "Program",
+          "color": "red",
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "width": 12
+        },
+        {
+          "from": 3,
+          "to": 7,
+          "startLabel": "1G",
+          "endLabel": "PORT 1",
+          "description": "Control",
+          "color": "blue",
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "width": 8
+        },
+        {
+          "from": 4,
+          "to": 7,
+          "startLabel": "10G",
+          "endLabel": "PORT 2",
+          "description": "Render",
+          "color": "blue",
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "width": 10
+        },
+        {
+          "from": 5,
+          "to": 7,
+          "startLabel": "1G",
+          "endLabel": "PORT 3",
+          "description": "Control",
+          "color": "blue",
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "width": 8
+        }
+      ]
     ]
   ],
   "_": { "f": "compact", "v": "1.0" }
@@ -204,17 +703,17 @@ Input Sources → Processing → Output/Display
 {
   "t": "LED Volume Configuration",
   "i": [
-    ["Camera A", "broadcast-cinema-camera", "Main talent camera"],
-    ["Camera B", "ptz-robotic-camera", "Secondary PTZ camera"],
-    ["Vision Tracking", "camera-tracking-sensor", "Pixotope Vision optical"],
-    ["LED Wall", "led-wall", "10x5m curved LED wall"],
-    ["LED Floor", "led-floor", "8x8m LED floor"],
-    ["LED Processor", "led-processor", "Brompton LED processor"],
-    ["Tracking Server", "pixotope-tracking-compute", "Vision tracking compute"],
-    ["Graphics Engine", "pixotope-graphics-compute", "Real-time UE5 render"],
-    ["Director Station", "pixotope-control-director", "Pixotope Director"],
-    ["Sync Generator", "sync-generator", "Tri-level sync source"],
-    ["10G Switch", "network-switch", "Core network switch"]
+    ["Camera A", "pixotope-video", "Main talent camera"],
+    ["Camera B", "pixotope-video", "Secondary PTZ camera"],
+    ["Vision Tracking", "cube", "Pixotope Vision optical tracking"],
+    ["LED Wall", "pixotope-led-wall", "10x5m curved LED wall"],
+    ["LED Floor", "pixotope-led-floor", "8x8m LED floor"],
+    ["LED Processor", "cube", "Brompton LED processor"],
+    ["Tracking Server", "server", "Vision tracking compute"],
+    ["Graphics Engine", "server", "Real-time UE5 render"],
+    ["Director Station", "desktop", "Pixotope Director"],
+    ["Sync Generator", "pixotope-clock", "Tri-level sync source"],
+    ["10G Switch", "switch-module", "Core network switch"]
   ],
   "v": [
     [
@@ -232,18 +731,18 @@ Input Sources → Processing → Output/Display
 {
   "t": "Multi-Cam Broadcast Graphics",
   "i": [
-    ["Camera 1", "broadcast-cinema-camera", "Studio camera with Zone"],
-    ["Camera 2", "broadcast-cinema-camera", "Studio camera with Zone"],
-    ["Camera 3", "ptz-robotic-camera", "Ceiling mounted PTZ"],
-    ["CCU 1", "camera-ccu", "Camera control unit"],
-    ["CCU 2", "camera-ccu", "Camera control unit"],
-    ["Video Router", "video-router-matrix", "32x32 SDI router"],
-    ["Graphics 1", "pixotope-graphics-compute", "Primary graphics engine"],
-    ["Graphics 2", "pixotope-graphics-compute", "Backup graphics engine"],
-    ["Switcher", "video-switcher", "Vision mixer"],
-    ["Multi-viewer", "multi-viewer", "Operator monitoring"],
-    ["NRCS Server", "nrcs-mos-server", "Newsroom integration"],
-    ["Storage", "storage-san-nas", "Shared media storage"]
+    ["Camera 1", "pixotope-video", "Studio camera with Zone"],
+    ["Camera 2", "pixotope-video", "Studio camera with Zone"],
+    ["Camera 3", "pixotope-video", "Ceiling mounted PTZ"],
+    ["CCU 1", "cube", "Camera control unit"],
+    ["CCU 2", "cube", "Camera control unit"],
+    ["Video Router", "router", "32x32 SDI router"],
+    ["Graphics 1", "server", "Primary graphics engine"],
+    ["Graphics 2", "server", "Backup graphics engine"],
+    ["Switcher", "pixotope-mixer", "Vision mixer"],
+    ["Multi-viewer", "desktop", "Operator monitoring"],
+    ["NRCS Server", "server", "Newsroom integration"],
+    ["Storage", "storage", "Shared media storage"]
   ],
   "v": [
     [
@@ -261,14 +760,14 @@ Input Sources → Processing → Output/Display
 {
   "t": "Remote Production Setup",
   "i": [
-    ["Remote Camera", "broadcast-cinema-camera", "Field camera with 5G bonding"],
-    ["Stream Encoder", "streaming-encoder", "H.265 live encoder"],
-    ["Cloud Gateway", "cloud-service", "AWS Media Services"],
-    ["IP Gateway", "ip-video-gateway", "ST 2110 to cloud bridge"],
-    ["Graphics Compute", "pixotope-graphics-compute", "Cloud-based rendering"],
-    ["Control Station", "pixotope-control-director", "Remote director workstation"],
-    ["Stream Decoder", "streaming-decoder", "Studio decoder"],
-    ["Production Switch", "video-switcher", "Master control switcher"]
+    ["Remote Camera", "pixotope-video", "Field camera with 5G bonding"],
+    ["Stream Encoder", "cube", "H.265 live encoder"],
+    ["Cloud Gateway", "cloud", "AWS Media Services"],
+    ["IP Gateway", "router", "ST 2110 to cloud bridge"],
+    ["Graphics Compute", "server", "Cloud-based rendering"],
+    ["Control Station", "desktop", "Remote director workstation"],
+    ["Stream Decoder", "cube", "Studio decoder"],
+    ["Production Switch", "pixotope-mixer", "Master control switcher"]
   ],
   "v": [
     [
@@ -343,25 +842,37 @@ Connections are defined as `[fromIndex, toIndex]` pairs:
 
 ## Validation Checklist for Pixotope Diagrams
 
-Before generating, ensure:
-- [ ] All Pixotope components properly identified with correct icon IDs
+### For Compact Format (LLM Generation):
+- [ ] All icon IDs use only available icons: `pixotope-clock`, `pixotope-greenscreen`, `pixotope-led-floor`, `pixotope-led-wall`, `pixotope-light`, `pixotope-mixer`, `pixotope-video`, `server`, `desktop`, `laptop`, `router`, `switch-module`, `storage`, `cloud`, `firewall`, `user`, `cube`
+- [ ] Use only basic connection format `[[fromIndex, toIndex]]`
+- [ ] All connection indices reference valid items (0-based indexing)
+- [ ] Metadata format is exactly `{"f": "compact", "v": "1.0"}`
+
+### For Full Format (Professional Diagrams):
+- [ ] All icon IDs match available icons
+- [ ] Connection colors use valid values: `"red"`, `"blue"`, `"green"`, `"orange"`, `"purple"`, `"gray"`
+- [ ] Connection styles use valid values: `"SOLID"`, `"DOTTED"`, `"DASHED"`
+- [ ] Connection lineTypes use valid values: `"SINGLE"`, `"DOUBLE"`, `"DOUBLE_WITH_CIRCLE"`
+- [ ] Multiple streams use `"DOUBLE_WITH_CIRCLE"` with count in description (e.g., "4x SDI")
+- [ ] Signal types clearly indicated in connection descriptions
+- [ ] Port labels match actual equipment specifications (ranges for multiple streams)
+
+### General Requirements (Both Formats):
 - [ ] Video signal flow clearly shown (left to right)
 - [ ] Network topology makes sense (devices connected to switches)
 - [ ] Sync/timing distribution included where needed
 - [ ] Tracking to graphics pipeline properly connected
 - [ ] Control paths identified (director to systems)
 - [ ] Redundancy clearly marked (primary/backup)
-- [ ] All icon IDs exactly match the available list
 - [ ] Item names are ≤ 30 characters
 - [ ] Descriptions are ≤ 100 characters
 - [ ] Title is ≤ 40 characters
 - [ ] Position coordinates are reasonable (-20 to +20)
-- [ ] Connection indices reference valid items (0-based indexing)
 - [ ] Metadata format is exactly `{"f": "compact", "v": "1.0"}`
 
 ## Common Pitfalls to Avoid
 
-1. **Invalid icon names**: Always use exact icon IDs from the list
+1. **Invalid icon names**: Only use these exact icon IDs: `pixotope-clock`, `pixotope-greenscreen`, `pixotope-led-floor`, `pixotope-led-wall`, `pixotope-light`, `pixotope-mixer`, `pixotope-video`, `server`, `desktop`, `laptop`, `router`, `switch-module`, `storage`, `cloud`, `firewall`, `user`, `cube`
 2. **Missing descriptions**: Always provide the third element in item arrays
 3. **Incorrect metadata**: Use exact format `{"f": "compact", "v": "1.0"}`
 4. **Invalid connections**: Ensure indices refer to existing items (0-based)
@@ -382,12 +893,12 @@ Before generating, ensure:
 ## Quick Reference: Essential Pixotope Components
 
 For most Pixotope installations, include these core components:
-1. **Graphics Compute** (`pixotope-graphics-compute`) - Always needed
-2. **Tracking System** (`camera-tracking-sensor` or `pixotope-tracking-compute`)
-3. **Network Switch** (`network-switch`) - For connectivity
-4. **Video I/O** (`video-switcher` or `video-router-matrix`)
-5. **Display** (`monitor`, `led-wall`, or `chroma-screen`)
-6. **Camera** (`broadcast-cinema-camera` or `ptz-robotic-camera`)
-7. **Control** (`pixotope-control-director`) - For operation
+1. **Graphics Compute** (`server`) - Always needed
+2. **Tracking System** (`cube` or `server`) - For camera tracking
+3. **Network Switch** (`switch-module`) - For connectivity
+4. **Video I/O** (`pixotope-mixer` or `router`) - Switching/routing
+5. **Display** (`desktop`, `pixotope-led-wall`, or `pixotope-greenscreen`)
+6. **Camera** (`pixotope-video`) - Video capture
+7. **Control** (`desktop`) - For operation
 
 This format ensures accurate, professional Pixotope installation diagrams that clearly communicate system architecture to broadcast engineers and virtual production teams.

@@ -1,0 +1,349 @@
+{
+  "title": "Virtual Studio with Signal Labels",
+  "icons": [],
+  "colors": [
+    {
+      "id": "pixotope-video",
+      "name": "pixotope-video",
+      "url": "/icons/pixotope/video.png",
+      "isIsometric": true
+    },
+    {
+      "id": "cube",
+      "name": "cube",
+      "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0aD0iMTA1LjRweCIgaGVpZ2h0PSI5My45cHgiIHZpZXdCb3g9IjAgMCAxMDUuNCA5My45IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMDUuNCA5My45IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGcgaWQ9IkxheWVyXzMiPgo8L2c+CjxnIGlkPSJMYXllcl80Ij4KCTxwb2x5Z29uIGZpbGw9IiM0RjY1ODciIHN0cm9rZT0iIzAxMDIwMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBwb2ludHM9IjgwLjQsMjYuMiA1MC41LDQ0LjMgNTAuNSw4MS4yIAoJCTgwLjQsNjMuMyAJIi8+Cgk8cG9seWdvbiBmaWxsPSIjQ0VEOEVCIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgcG9pbnRzPSIyMC43LDI2LjIgNTAuNSw0NC4zIDUwLjUsODEuMiAKCQkyMC43LDYzLjMgCSIvPgoJPHBvbHlnb24gZmlsbD0iI0NFRDhFQiIgcG9pbnRzPSI1MC41LDQ0LjIgMjAuNywyNi4yIDUwLjMsOC41IDgwLjQsMjYuMiAJIi8+Cgk8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjI5LjksMjYuMiA1NC45LDExLjIgNTAuMyw4LjUgMjAuNywyNi4yIDUwLjUsNDQuMiA1NS4xLDQxLjUgCSIvPgoJPHBvbHlnb24gZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHBvaW50cz0iNTAuNSw0NC4yIDIwLjcsMjYuMiA1MC4zLDguNSAKCQk4MC40LDI2LjIgCSIvPgoJPHBvbHlnb24gb3BhY2l0eT0iMC40IiBmaWxsPSIjMDAwMDAwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3ICAgICIgcG9pbnRzPSI4MC40LDU1LjEgODAuNCw2My4zIDU2LjMsNzcuOCA1MC41LDgzLjIgNjYuNCw4My4yIDk4LjUsNjMuOCAJIi8+CjwvZz4KPGcgaWQ9IkxheWVyXzUiPgoJPGc+CgkJPHBhdGggZD0iTTUwLjMsOC41bDMwLjEsMTcuOHYzNy4xTDUwLjUsODEuMkwyMC43LDYzLjNWMjYuMkw1MC4zLDguNSBNNTAuMyw2LjVjLTAuNCwwLTAuNywwLjEtMSwwLjNMMTkuNiwyNC41CgkJCWMtMC42LDAuNC0xLDEtMSwxLjd2MzcuMWMwLDAuNywwLjQsMS40LDEsMS43bDI5LjgsMTcuOWMwLjMsMC4yLDAuNywwLjMsMSwwLjNzMC43LTAuMSwxLTAuM2wzMC0xNy45YzAuNi0wLjQsMS0xLDEtMS43VjI2LjIKCQkJYzAtMC43LTAuNC0xLjQtMS0xLjdMNTEuMyw2LjdDNTEsNi42LDUwLjYsNi41LDUwLjMsNi41TDUwLjMsNi41eiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPgo=",
+      "collection": "isoflow",
+      "isIsometric": true
+    },
+    {
+      "id": "pixotope-greenscreen",
+      "name": "pixotope-greenscreen",
+      "url": "/icons/pixotope/greenscreen.png",
+      "isIsometric": true
+    },
+    {
+      "id": "server",
+      "name": "server",
+      "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI1LjMuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI1NDMuNTIzOTlweCIgaGVpZ2h0PSI1MDguODUxMDFweCIgdmlld0JveD0iMCAwIDU0My41MjM5OSA1MDguODUxMDEiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDU0My41MjM5OSA1MDguODUxMDEiCgkgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZmlsbD0iIzY4ODVBOSIgZD0iTTg4My4xMTQwMSwyNjcuMTgxYzAuMDg4MDEsMC45MDIwMSwwLjE0NiwxLjgwNzAxLDAuMTQ2LDIuNzE3MDFWMjY3LjE4MUg4ODMuMTE0MDF6Ii8+Cgk8cGF0aCBmaWxsPSIjMjMxRjIwIiBkPSJNODg1LjE1MzAyLDI2OS44OTdoLTMuNzg0OTdjMC0wLjc2MDk5LTAuMDQ0OTgtMS41ODgwMS0wLjEzOC0yLjUzMjAxbC0wLjIwMzk4LTIuMDc3aDQuMTI3MDF2NC42MDkwMQoJCUg4ODUuMTUzMDJ6Ii8+CjwvZz4KPGc+Cgk8cGF0aCBmaWxsPSIjNjg4NUE5IiBkPSJNODgzLjExNDAxLDE3MS42MTMwMWMwLjA4ODAxLDAuOTAxLDAuMTQ2LDEuODA2LDAuMTQ2LDIuNzE2di0yLjcxNkg4ODMuMTE0MDF6Ii8+Cgk8cGF0aCBmaWxsPSIjMjMxRjIwIiBkPSJNODg1LjE1MzAyLDE3NC4zMjg5OWgtMy43ODQ5N2MwLTAuNzYxLTAuMDQ0OTgtMS41ODgtMC4xMzgtMi41M2wtMC4yMDM5OC0yLjA3OGg0LjEyNzAxdjQuNjA4SDg4NS4xNTMwMnoiCgkJLz4KPC9nPgo8cGF0aCBmaWxsPSIjQjJDQkVEIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNODgzLjExNDAxLDI2Ny4xODEKCWMwLjA4ODAxLDAuOTAyMDEsMC4xNDYsMS44MDcwMSwwLjE0NiwyLjcxNzAxVjI2Ny4xODFIODgzLjExNDAxeiIvPgo8cGF0aCBmaWxsPSIjQjJDQkVEIiBzdHJva2U9IiMyMzFGMjAiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNODgzLjExNDAxLDE3MS42MTMwMQoJYzAuMDg4MDEsMC45MDEsMC4xNDYsMS44MDYsMC4xNDYsMi43MTZ2LTIuNzE2SDg4My4xMTQwMXoiLz4KPGc+Cgk8cG9seWdvbiBvcGFjaXR5PSIwLjQiIGZpbGw9IiMwMDAwMDAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgICAgIiBwb2ludHM9IjMwNS4yODI5OSw0NzguNDkxIDI3MS40NzE5OCw0NzEuODkyIDEzMC45NDIsOTMuMDQ2IDU0MS4xMDkwMSwzNDEuMzggCgkJCSIvPgoJPHBvbHlnb24gZmlsbD0iIzM2NUU3RiIgcG9pbnRzPSI0MzkuODQ2MDEsMjgwLjg3NSAyNzIuNTAxMDEsMzgwLjAwMTAxIDEwMC4yNzgsMjc5LjU5Njk4IDk1LjEwNSwyODMuMzA0OTkgMjcxLjQ3NTAxLDM4OS4wOTY5OCAKCQk0NDYuNTA2OTksMjg1LjExMzAxIAkiLz4KCTxwb2x5Z29uIGZpbGw9IiNDQ0Q4RUUiIHBvaW50cz0iOTIuNjkzLDI4NC4zNzkgOTEuOTkyLDI4NC4zNzkgOTEuOTkyLDI4NC43OTA5OSAJIi8+Cgk8cG9seWdvbiBmaWxsPSIjMjMxRjIwIiBwb2ludHM9IjkxLjQ5MiwyODUuNjY1MDEgOTEuNDkyLDI4My44NzkgOTQuNTMxLDI4My44NzkgCSIvPgoJPHBvbHlnb24gZmlsbD0iI0I1QzVEQyIgcG9pbnRzPSI5MS45OTIsMzU2LjI5MDAxIDI7MS40Njg5OSw0NjIuNTk5IDI3MS40NzUwMSw0NjIuNTk1IDI3MS40NzUwMSwzOTEuMDk2OTggOTEuOTkyLDI4NC44MDA5OSAJIi8+Cgk8cG9seWdvbiBmaWxsPSIjNjg4NUE5IiBwb2ludHM9IjQ1MC45NTkwMSwzNTYuMjkwMDEgMjcxLjQ4MTk5LDQ2Mi41OTkgMjcxLjQ3NTAxLDQ2Mi41OTUgMjcxLjQ3NTAxLDM5MS4wOTY5OCAKCQk0NTAuOTU5MDEsMjg0LjgwMDk5IAkiLz4KCTxwb2x5Z29uIGZpbGw9IiNDQ0Q4RUUiIHBvaW50cz0iOTIuNjkzLDIwMC4wNTcwMSA5MS45OTIsMjAwLjA1NzAxIDkxLjk5MiwyMDAuNDcwOTkgCSIvPgoJPHBvbHlnb24gZmlsbD0iIzIzMUYyMCIgcG9pbnRzPSI5MS40OTIsMjAxLjM0NyA5MS40OTIsMTk5LjU1NzAxIDk0LjUyMywxOTkuNTU3MDEgCSIvPgoJPHBvbHlnb24gZmlsbD0iI0NERDlFRSIgcG9pbnRzPSIyNzEuNDc1MDEsMjIwLjEzMSA5My45NTIsMTE0Ljk5NSAyNzAuOTE1OTksOS45ODYgNDQ4Ljk5MiwxMTQuOTk5IAkiLz4KCTxwb2x5Z29uIGZpbGw9IiMzNjVFN0YiIHBvaW50cz0iNDM3Ljc4MjAxLDE5Mi42NyAyNzAuOTE1MDEsMjkxLjQ5Mzk5IDEwNC42MSwxOTMuMDAxMDEgOTEuOTg2LDIwMC40NzcwMSAyNzEuNDc1MDEsMzA2Ljc3NiAKCQk0NTAuOTY1LDIwMC40NzcwMSAJIi8+Cgk8cG9seWdvbiBmaWxsPSIjQjVDNURDIiBwb2ludHM9IjkxLjk5MiwyNzEuOTY3OTkgMjcxLjQ2ODk5LDM3OC4yOCAyNzEuNDc1MDEsMzc4LjI3Mzk5IDI3MS40NzUwMSwzMDYuNzc2IDkxLjk5MiwyMDAuNDggCSIvPgoJPHBvbHlnb24gZmlsbD0iIzY4ODVBOSIgcG9pbnRzPSI0NTAuOTU5MDEsMjcxLjk2Nzk5IDI3MS40ODE5OSwzNzguMjggMjcxLjQ3NTAxLDM3OC4yNzM5OSAyNzEuNDc1MDEsMzA2Ljc3NiA0NTAuOTU5MDEsMjAwLjQ4IAkKCQkiLz4KCTxwb2x5Z29uIGZpbGw9IiNDQ0Q4RUUiIHBvaW50cz0iOTIuNjkzLDExNS43MzggOTEuOTkyLDExNS43MzggOTEuOTkyLDExNi4xNSAJIi8+Cgk8cG9seWdvbiBmaWxsPSIjQjVDNURDIiBwb2ludHM9IjkxLjk5MiwxODcuNjQ5OTkgMjcxLjQ2ODk5LDI5My45NTgwMSAyNzEuNDc1MDEsMjkzLjk1NDAxIDI3MS40NzUwMSwyMjIuNDU1IDkxLjk5MiwxMTYuMTU4IAkiLz4KCTxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iMjg0Ljc5MTk5LDIxMi4yNDQgMTM2LjI0OCwxMjMuMTMzIDI5OS4xMDgsMjYuNjExIDI3MC45MTU5OSw5Ljk4NiA5My45NTIsMTE0Ljk5NSAKCQkyNzEuNDc1MDEsMjIwLjEzMSAJIi8+Cgk8cG9seWdvbiBmaWxsPSIjNjg4NUE5IiBwb2ludHM9IjQ1MC45NTkwMSwxODcuNjQ5OTkgMjcxLjQ4MTk5LDI5My45NTgwMSAyNzEuNDc1MDEsMjkzLjk1NDAxIDI3MS40NzUwMSwyMjIuNDU1IAoJCTQ1MC45NTkwMSwxMTYuMTU4IAkiLz4KCTxnPgoJCTxnIG9wYWNpdHk9IjAuOCIgZmlsbD0iIzAwMDAwMCI+CgkJCTxwb2x5Z29uIGZpbGw9IiNFQUY0RkYiIHBvaW50cz0iMTU1LjkzNSwyMjIuOTYwMDEgMTk3LjYxNTAxLDE4MS4yNzkwMSAxNTUuODQyLDE1Ni41MzkgMTE0LjE2NSwxOTguMjE2IAkJCSIvPgoJCTwvZz4KCQk8ZyBvcGFjaXR5PSIwLjgiIGZpbGw9IiMwMDAwMDAiPgoJCQk8cG9seWdvbiBmaWxsPSIjRUFGNEZGIiBwb2ludHM9IjE4NS45NTM5OSwyNDAuODkzMDEgMjI3LjgyODk5LDE5OS4wMTgwMSAyMDYuODQzOTksMTg2LjU4OSAxNjQuOTY4OTksMjI4LjQ2NCAJCQkiLz4KCQk8L2c+Cgk8L2c+Cgk8Zz4KCQk8ZyBvcGFjaXR5PSIwLjgiIGZpbGw9IiMwMDAwMDAiPgoJCQk8cG9seWdvbiBmaWxsPSIjRUFGNEZGIiBwb2ludHM9IjE1NS44ODQ5OSwzMDcuNDE1MDEgMTk3LjcwMiwyNjUuNTk2MDEgMTU1Ljc5MjAxLDI0MC43NzQgMTEzLjk3NywyODIuNTkgCQkJIi8+CgkJPC9nPgoJCTxnIG9wYWNpdHk9IjAuOCIgZmlsbD0iIzAwMDAwMCI+CgkJCTxwb2x5Z29uIGZpbGw9IiNFQUY0RkYiIHBvaW50cz0iMTg2LjAwMiwzMjUuNDA3MDEgMjI4LjAxNywyODMuMzkzMDEgMjA2Ljk2MywyNzAuOTI0OTkgMTY0Ljk1LDMxMi45MzYgCQkJIi8+CgkJPC9nPgoJPC9nPgoJPGc+CgkJPGcgb3BhY2l0eT0iMC44IiBmaWxsPSIjMDAwMDAwIj4KCQkJPHBvbHlnb24gZmlsbD0iI0VBRjRGRiIgcG9pbnRzPSIxNTUuOTI3LDM5MS41ODQ5OSAxOTcuNjI4MDEsMzQ5Ljg4IDE1NS44MzI5OSwzMjUuMTI3OTkgMTE0LjEzNCwzNjYuODI3IAkJCSIvPgoJCTwvZz4KCQk8ZyBvcGFjaXR5PSIwLjgiIGZpbGw9IiMwMDAwMDAiPgoJCQk8cG9seWdvbiBmaWxsPSIjRUFGNEZGIiBwb2ludHM9IjE4NS45NjEsNDA5LjUyNiAyMjcuODU4OTksMzY3LjYzIDIwNi44NjQsMzU1LjE5NCAxNjQuOTY2LDM5Ny4wOTEgCQkJIi8+CgkJPC9nPgoJPC9nPgoJPGc+CgkJPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgcG9pbnRzPSIxMzkuODkyLDE3Mi4wNjEgMTIxLjk5MiwxNjEuNDYwMDEgMTIxLjk5MiwxNzcuODg2OTkgMTM5Ljg5MiwxODguNDg5IAkJIi8+Cgk8L2c+Cgk8Zz4KCQk8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBwb2ludHM9IjE2NC4yNDY5OSwxODcuNDE2IDE0Ni4zNDcsMTc2LjgxNCAxNDYuMzQ3LDE5My4yNDEgMTY0LjI0Njk5LDIwMy44NDM5OSAJCSIvPgoJPC9nPgoJPGc+CgkJPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgcG9pbnRzPSIxMzkuODkyLDI1Ni4zMjQwMSAxMjEuOTkyLDI0NS43MjQgMTIxLjk5MiwyNjIuMTQ5OTkgMTM5Ljg5MiwyNzIuNzUyOTkgCQkiLz4KCTwvZz4KCTxnPgoJCTxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHBvaW50cz0iMTY0LjI0Njk5LDI3MS42Nzk5OSAxNDYuMzQ3LDI2MS4wNzggMTQ2LjM0NywyNzcuNTA1IDE2NC4yNDY5OSwyODguMTA2OTkgCQkiLz4KCTwvZz4KCTxnPgoJCTxwb2x5Z29uIGZpbGw9IiMwMDAwMDAiIHBvaW50cz0iMTM5Ljg5MiwzNDIuMzcyMDEgMTIxLjk5MiwzMzEuNzY5OTkgMTIxLjk5MiwzNDguMTk4IDEzOS44OTIsMzU4Ljc5OTk5IAkJIi8+Cgk8L2c+Cgk8Zz4KCQk8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBwb2ludHM9IjE2NC4yNDY5OSwzNTcuNzI4IDE0Ni4zNDcsMzQ3LjEyNjAxIDE0Ni4zNDcsMzYzLjU1MiAxNjQuMjQ2OTksMzc0LjE1NSAJCSIvPgoJPC9nPgoJPGc+CgkJPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgcG9pbnRzPSIyNDcuNjQ3OTksMjQ4LjcyNCAxNzEuMzg0LDIwMy41NTkwMSAxNzEuMzg0LDE5Ni42MzQ5OSAyNDcuNjc5LDI0MS43NyAJCSIvPgoJPC9nPgoJPGc+CgkJPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgcG9pbnRzPSIyNDcuNjQ3OTksMzMyLjgyMTAxIDE3MS4zODQsMjg3LjY1Mzk5IDE3MS4zODQsMjgwLjczMTk5IDI0Ny42NzksMzI1Ljg2ODAxIAkJIi8+Cgk8L2c+Cgk8Zz4KCQk8cG9seWdvbiBmaWxsPSIjMDAwMDAwIiBwb2ludHM9IjI0Ny42NDc5OSw0MTYuOTE5MDEgMTcxLjM4NCwzNzEuNzUyOTkgMTcxLjM4NCwzNjQuODI5MDEgMjQ3LjY3OSw0MDkuOTYzOTkgCQkiLz4KCTwvZz4KCTxwYXRoIGZpbGw9IiMyMzFGMjAiIGQ9Ik00NTguOTU1OTksMTExLjU4OUwyNzAuOTAzOTksMC42OTFMODQuOTcxLDExMS4wMjFsLTAuOTc5LDAuNTgydjc5LjYwNjAxbDUuMTMzLDIuODU1bC01LjEzMywyLjg1Njk5CgkJdjc3LjY3bDUuMDM2LDMuNTA0bC01LjAzOSwyLjYzNTk5djgwLjExNmwxODcuNDgzLDExMS4wNDNsMTg2LjUwNC0xMTAuNDYxbDAuOTgwMDEtMC41ODJWMjgyLjcxNmwtNC41NzgtMy4xMzUwMWw0LjU3OC0zLjIwNwoJCXYtODAuNDUzbC01LjEzMy0yLjg1Njk5bDUuMTMzLTIuODU1TDQ1OC45NTU5OSwxMTEuNTg5TDQ1OC45NTU5OSwxMTEuNTg5eiBNMjcwLjkxNTk5LDkuOTg2bDE3OC4wNzQ5OCwxMDUuMDEzTDI3MS40NzUwMSwyMjAuMTMxCgkJTDkzLjk1MiwxMTQuOTk1TDI3MC45MTU5OSw5Ljk4NnogTTQ0OC45NTkwMSwxMTkuNjY3djY2Ljg0NEwyNzMuNDc2MDEsMjkwLjQ1MnYtNjYuODU2TDQ0OC45NTkwMSwxMTkuNjY3eiBNMjY5LjQ3NTAxLDIyMy41OTU5OQoJCXY2Ni44NTVMOTMuOTkyLDE4Ni41MTF2LTY2Ljg0NEwyNjkuNDc1MDEsMjIzLjU5NTk5eiBNOTMuOTkyLDI3MC44Mjh2LTY2LjgzODk5bDE3NS40ODMsMTAzLjkyNTk5djY2Ljg1OTAxTDkzLjk5MiwyNzAuODI4egoJCSBNMjY5LjQ3NTAxLDQ1OS4wOTI5OWwtMTc1LjQ4My0xMDMuOTQ0di02Ni44NGwxNzUuNDgzLDEwMy45MjU5OVY0NTkuMDkyOTlMMjY5LjQ3NTAxLDQ1OS4wOTI5OXogTTk1LjEwNSwyODMuMzA0OTlsNS4xNzMtMy43MDgwMQoJCWwxNzAuMTcyOTksMTAwLjQwMzk5YzAuMDI2LDAuMDE1OTksMC4wNTYsMC4wMTk5OSwwLjA4MzAxLDAuMDM1YzAuMTA5OTksMC4wNTg5OSwwLjIyNTAxLDAuMTA2OTksMC4zNDI5OSwwLjE0NDk5CgkJYzAuMDQ5MDEsMC4wMTQwMSwwLjA5Njk4LDAuMDI3MDEsMC4xNDcsMC4wMzljMC4xNTEsMC4wMzUsMC4zMDQ5OSwwLjA2MSwwLjQ1OTk5LDAuMDYxYzAuMDM1LDAsMC4wNjktMC4wMTE5OSwwLjEwNTAxLTAuMDE0MDEKCQljMC4xMDgtMC4wMDgsMC4yMTYtMC4wMTk5OSwwLjMyMTAxLTAuMDQzYzAuMDc3LTAuMDE4MDEsMC4xNTEtMC4wNDA5OSwwLjIyNjk5LTAuMDY3OTkKCQljMC4wNjc5OS0wLjAyMzAxLDAuMTM1OTktMC4wNTMwMSwwLjIwMi0wLjA4NmMwLjA1Mzk5LTAuMDI0OTksMC4xMTItMC4wMzY5OSwwLjE2NC0wLjA2Nzk5bDE2Ny4zNDUtOTkuMTI2MDFsNi42NjEwMSw0LjIzODAxCgkJTDI3MS40NzUwMSwzODguNzcyTDk1LjEwNSwyODMuMzA0OTl6IE00NDguOTU5MDEsMzU1LjE0ODk5bC0xNzUuNDgzLDEwMy45NDR2LTY2Ljg1Njk5TDQ0OC45NTkwMSwyODguMzFWMzU1LjE0ODk5CgkJTDQ0OC45NTkwMSwzNTUuMTQ4OTl6IE00NDguOTU5MDEsMjcwLjgyOGwtMTc1LjQ4MywxMDMuOTQ1OTh2LTY2Ljg1OTAxbDE3NS40ODMtMTAzLjkyNTk5VjI3MC44MjhMNDQ4Ljk1OTAxLDI3MC44Mjh6CgkJIE0yNzEuNDc1MDEsMzA0LjQ1Mkw5My45NTIsMTk5LjMxNzk5bDYuOTAzLTQuMDkzbDE2OS41OTUsMTAwLjQ1Mjk5YzAuMTYyOTksMC4wOTYwMSwwLjMzNzAxLDAuMTY0LDAuNTE1OTksMC4yMTEKCQljMC4xNTYwMSwwLjA0MDk5LDAuMzE2MDEsMC4wNiwwLjQ3Njk5LDAuMDYyMDFjMC4wMDgsMCwwLjAxNTk5LDAuMDA0LDAuMDIzMDEsMC4wMDRjMCwwLDAsMCwwLjAwMTAxLDAKCQljMC4wMDUsMCwwLjAxMDAxLDAuMDAyMDEsMC4wMTUwMSwwLjAwMjAxYzAuMzUzLDAsMC43MDU5OS0wLjA5Mzk5LDEuMDE5OTktMC4yNzg5OWwxNjkuNTkzMDItMTAwLjQ1Mmw2LjkwMjAxLDQuMDkyCgkJTDI3MS40NzUwMSwzMDQuNDUyeiIvPgo8L2c+Cjwvc3ZnPgo=",
+      "collection": "isoflow",
+      "isIsometric": true
+    },
+    {
+      "id": "pixotope-mixer",
+      "name": "pixotope-mixer",
+      "url": "/icons/pixotope/mixer.png",
+      "isIsometric": true
+    },
+    {
+      "id": "desktop",
+      "name": "desktop",
+      "url": "data:image/svg+xml;base64,...",
+      "collection": "isoflow",
+      "isIsometric": true
+    },
+    {
+      "id": "switch-module",
+      "name": "switch-module",
+      "url": "data:image/svg+xml;base64,...",
+      "collection": "isoflow",
+      "isIsometric": true
+    }
+  ],
+  "colors": [
+    {
+      "id": "red",
+      "value": "#ff0000"
+    },
+    {
+      "id": "blue",
+      "value": "#0000ff"
+    },
+    {
+      "id": "green",
+      "value": "#00ff00"
+    }
+  ],
+  "items": [
+    {
+      "id": "studio-camera",
+      "name": "Studio Camera",
+      "icon": "pixotope-video",
+      "description": "Main broadcast camera with tracking"
+    },
+    {
+      "id": "tracking-sensor",
+      "name": "Tracking Sensor",
+      "icon": "cube",
+      "description": "Pixotope Zone tracking head"
+    },
+    {
+      "id": "green-screen",
+      "name": "Green Screen",
+      "icon": "pixotope-greenscreen",
+      "description": "12x8m green screen backdrop"
+    },
+    {
+      "id": "tracking-compute",
+      "name": "Tracking Compute",
+      "icon": "server",
+      "description": "Pixotope tracking server"
+    },
+    {
+      "id": "graphics-compute",
+      "name": "Graphics Compute",
+      "icon": "server",
+      "description": "UE5 rendering engine"
+    },
+    {
+      "id": "video-switcher",
+      "name": "Video Switcher",
+      "icon": "pixotope-mixer",
+      "description": "Production switcher"
+    },
+    {
+      "id": "pgm-monitor",
+      "name": "PGM Monitor",
+      "icon": "desktop",
+      "description": "Program output monitor"
+    },
+    {
+      "id": "network-switch",
+      "name": "Network Switch",
+      "icon": "switch-module",
+      "description": "10GbE managed switch"
+    }
+  ],
+  "views": [
+    {
+      "id": "main-view",
+      "name": "Virtual Studio Setup",
+      "items": [
+        {
+          "id": "studio-camera",
+          "tile": { "x": -6, "y": -4 },
+          "labelHeight": 80
+        },
+        {
+          "id": "tracking-sensor",
+          "tile": { "x": -6, "y": 0 },
+          "labelHeight": 80
+        },
+        {
+          "id": "green-screen",
+          "tile": { "x": 0, "y": -6 },
+          "labelHeight": 80
+        },
+        {
+          "id": "tracking-compute",
+          "tile": { "x": -2, "y": 2 },
+          "labelHeight": 80
+        },
+        {
+          "id": "graphics-compute",
+          "tile": { "x": 2, "y": 2 },
+          "labelHeight": 80
+        },
+        {
+          "id": "video-switcher",
+          "tile": { "x": 6, "y": 0 },
+          "labelHeight": 80
+        },
+        {
+          "id": "pgm-monitor",
+          "tile": { "x": 10, "y": 0 },
+          "labelHeight": 80
+        },
+        {
+          "id": "network-switch",
+          "tile": { "x": 0, "y": 6 },
+          "labelHeight": 80
+        }
+      ],
+      "connectors": [
+        {
+          "id": "tracking-connection",
+          "color": "green",
+          "description": "Tracking Data",
+          "startLabel": "SYNC",
+          "endLabel": "CAM",
+          "width": 8,
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "anchors": [
+            {
+              "id": "anchor-1",
+              "ref": { "item": "studio-camera" }
+            },
+            {
+              "id": "anchor-2",
+              "ref": { "item": "tracking-sensor" }
+            }
+          ]
+        },
+        {
+          "id": "position-data",
+          "color": "blue",
+          "description": "Position Data",
+          "startLabel": "DATA",
+          "endLabel": "ETH",
+          "width": 10,
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "anchors": [
+            {
+              "id": "anchor-3",
+              "ref": { "item": "tracking-sensor" }
+            },
+            {
+              "id": "anchor-4",
+              "ref": { "item": "tracking-compute" }
+            }
+          ]
+        },
+        {
+          "id": "tracking-to-graphics",
+          "color": "blue",
+          "description": "Tracking Feed",
+          "startLabel": "OUT",
+          "endLabel": "IN",
+          "width": 12,
+          "style": "SOLID",
+          "lineType": "DOUBLE",
+          "anchors": [
+            {
+              "id": "anchor-5",
+              "ref": { "item": "tracking-compute" }
+            },
+            {
+              "id": "anchor-6",
+              "ref": { "item": "graphics-compute" }
+            }
+          ]
+        },
+        {
+          "id": "camera-to-switcher",
+          "color": "red",
+          "description": "3G-SDI",
+          "startLabel": "SDI OUT",
+          "endLabel": "SDI 1",
+          "width": 12,
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "anchors": [
+            {
+              "id": "anchor-7",
+              "ref": { "item": "studio-camera" }
+            },
+            {
+              "id": "anchor-8",
+              "ref": { "item": "video-switcher" }
+            }
+          ]
+        },
+        {
+          "id": "graphics-to-switcher",
+          "color": "red",
+          "description": "4x Graphics",
+          "startLabel": "SDI 1-4",
+          "endLabel": "IN A-D",
+          "width": 16,
+          "style": "SOLID",
+          "lineType": "DOUBLE_WITH_CIRCLE",
+          "anchors": [
+            {
+              "id": "anchor-9",
+              "ref": { "item": "graphics-compute" }
+            },
+            {
+              "id": "anchor-10",
+              "ref": { "item": "video-switcher" }
+            }
+          ]
+        },
+        {
+          "id": "switcher-to-monitor",
+          "color": "red",
+          "description": "Program",
+          "startLabel": "PGM",
+          "endLabel": "INPUT",
+          "width": 12,
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "anchors": [
+            {
+              "id": "anchor-11",
+              "ref": { "item": "video-switcher" }
+            },
+            {
+              "id": "anchor-12",
+              "ref": { "item": "pgm-monitor" }
+            }
+          ]
+        },
+        {
+          "id": "tracking-network",
+          "color": "blue",
+          "description": "Control",
+          "startLabel": "1G",
+          "endLabel": "PORT 1",
+          "width": 8,
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "anchors": [
+            {
+              "id": "anchor-13",
+              "ref": { "item": "tracking-compute" }
+            },
+            {
+              "id": "anchor-14",
+              "ref": { "item": "network-switch" }
+            }
+          ]
+        },
+        {
+          "id": "graphics-network",
+          "color": "blue",
+          "description": "Render Data",
+          "startLabel": "10G",
+          "endLabel": "PORT 2",
+          "width": 10,
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "anchors": [
+            {
+              "id": "anchor-15",
+              "ref": { "item": "graphics-compute" }
+            },
+            {
+              "id": "anchor-16",
+              "ref": { "item": "network-switch" }
+            }
+          ]
+        },
+        {
+          "id": "switcher-network",
+          "color": "blue",
+          "description": "Control",
+          "startLabel": "1G",
+          "endLabel": "PORT 3",
+          "width": 8,
+          "style": "SOLID",
+          "lineType": "SINGLE",
+          "anchors": [
+            {
+              "id": "anchor-17",
+              "ref": { "item": "video-switcher" }
+            },
+            {
+              "id": "anchor-18",
+              "ref": { "item": "network-switch" }
+            }
+          ]
+        }
+      ],
+      "rectangles": [],
+      "textBoxes": []
+    }
+  ],
+  "fitToScreen": true
+}
