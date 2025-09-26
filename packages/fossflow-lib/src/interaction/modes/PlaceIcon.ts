@@ -1,5 +1,5 @@
 import { produce } from 'immer';
-import { ModeActions } from 'src/types';
+import { ModeActions, PlaceIconMode } from 'src/types';
 import { generateId, getItemAtTile, findNearestUnoccupiedTile } from 'src/utils';
 import { VIEW_ITEM_DEFAULTS } from 'src/config';
 
@@ -8,7 +8,9 @@ export const PlaceIcon: ModeActions = {
   mousedown: ({ uiState, scene, isRendererInteraction }) => {
     if (uiState.mode.type !== 'PLACE_ICON' || !isRendererInteraction) return;
 
-    if (!uiState.mode.id) {
+    // Type guard to ensure uiState.mode is PlaceIconMode
+    const placeIconMode = uiState.mode as PlaceIconMode;
+    if (!placeIconMode.id) {
       const itemAtTile = getItemAtTile({
         tile: uiState.mouse.position.tile,
         scene
@@ -26,7 +28,9 @@ export const PlaceIcon: ModeActions = {
   mouseup: ({ uiState, scene, model }) => {
     if (uiState.mode.type !== 'PLACE_ICON') return;
 
-    if (uiState.mode.id !== null) {
+    // Type guard to ensure uiState.mode is PlaceIconMode
+    const placeIconMode = uiState.mode as PlaceIconMode;
+    if (placeIconMode.id !== null) {
       // Find the nearest unoccupied tile to the target position
       const targetTile = findNearestUnoccupiedTile(
         uiState.mouse.position.tile,
@@ -38,12 +42,12 @@ export const PlaceIcon: ModeActions = {
         const modelItemId = generateId();
 
         // Look up the icon to get its name for a better default
-        const iconData = model.icons.find(icon => icon.id === uiState.mode.id);
+        const iconData = model.icons.find(icon => icon.id === placeIconMode.id);
         const defaultName = iconData?.name || 'Untitled';
         
         // Debug logging to understand the issue
         console.log('🔍 PlaceIcon Debug:', {
-          modeId: uiState.mode.id,
+          modeId: placeIconMode.id,
           foundIcon: iconData ? { id: iconData.id, name: iconData.name } : null,
           defaultName,
           totalIcons: model.icons.length,
@@ -54,7 +58,7 @@ export const PlaceIcon: ModeActions = {
           modelItem: {
             id: modelItemId,
             name: defaultName,
-            icon: uiState.mode.id
+            icon: placeIconMode.id
           },
           viewItem: {
             ...VIEW_ITEM_DEFAULTS,

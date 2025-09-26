@@ -43,6 +43,16 @@ const icons = (() => {
   return validIcons;
 })();
 
+// Default colors for connectors - defined outside component to prevent recreation
+const DEFAULT_COLORS = [
+  { id: 'blue', value: '#0066cc' },
+  { id: 'green', value: '#00aa00' },
+  { id: 'red', value: '#cc0000' },
+  { id: 'orange', value: '#ff9900' },
+  { id: 'purple', value: '#9900cc' },
+  { id: 'black', value: '#000000' },
+  { id: 'gray', value: '#666666' }
+];
 
 interface SavedDiagram {
   id: string;
@@ -64,21 +74,17 @@ function App() {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastAutoSave, setLastAutoSave] = useState<Date | null>(null);
   const isAutoSavingRef = useRef(false);
+  const diagramNameRef = useRef(diagramName);
   const [showStorageManager, setShowStorageManager] = useState(false);
   const [showDiagramManager, setShowDiagramManager] = useState(false);
   const [serverStorageAvailable, setServerStorageAvailable] = useState(false);
   
+  // Update ref when diagramName changes
+  useEffect(() => {
+    diagramNameRef.current = diagramName;
+  }, [diagramName]);
+  
   // Initialize with empty diagram data
-  // Create default colors for connectors
-  const defaultColors = [
-    { id: 'blue', value: '#0066cc' },
-    { id: 'green', value: '#00aa00' },
-    { id: 'red', value: '#cc0000' },
-    { id: 'orange', value: '#ff9900' },
-    { id: 'purple', value: '#9900cc' },
-    { id: 'black', value: '#000000' },
-    { id: 'gray', value: '#666666' }
-  ];
 
   // Use the new icon menu configuration system
   const iconMenuConfig = useIconMenuConfig({ availableIcons: icons });
@@ -110,7 +116,7 @@ function App() {
         return {
           ...data,
           icons: mergedIcons,
-          colors: data.colors?.length ? data.colors : defaultColors,
+          colors: data.colors?.length ? data.colors : DEFAULT_COLORS,
           fitToScreen: data.fitToScreen !== false
         };
       } catch (e) {
@@ -122,7 +128,7 @@ function App() {
     return {
       title: 'Untitled Diagram',
       icons: icons,
-      colors: defaultColors,
+      colors: DEFAULT_COLORS,
       items: [],
       views: [],
       fitToScreen: true
@@ -169,7 +175,7 @@ function App() {
       const newData = {
         ...diagramData,
         icons: allConfiguredIcons,
-        colors: diagramData.colors || defaultColors
+        colors: diagramData.colors || DEFAULT_COLORS
       };
       
       setPreparedInitialData(newData);
@@ -354,7 +360,7 @@ function App() {
       const emptyDiagram: DiagramData = {
         title: 'Untitled Diagram',
         icons: icons, // Always include full icon set
-        colors: defaultColors,
+        colors: DEFAULT_COLORS,
         items: [],
         views: [],
         fitToScreen: true
@@ -378,9 +384,9 @@ function App() {
     
     // Simply store the complete model as-is since it has everything
     const updatedModel = {
-      title: model.title || diagramName || 'Untitled',
+      title: model.title || diagramNameRef.current || 'Untitled',
       icons: model.icons || [], // This already includes ALL icons (default + imported)
-      colors: model.colors || defaultColors,
+      colors: model.colors || DEFAULT_COLORS,
       items: model.items || [],
       views: model.views || [],
       fitToScreen: true
@@ -389,7 +395,7 @@ function App() {
     setCurrentModel(updatedModel);
     setDiagramData(updatedModel);
     setHasUnsavedChanges(true);
-  }, [diagramName, defaultColors]);
+  }, []); // Empty dependencies - stable callback
 
   const exportDiagram = () => {
     // Use the most recent model data - prefer currentModel as it gets updated by handleModelUpdated
@@ -470,7 +476,7 @@ function App() {
       ...data,
       title: data.title || data.name || 'Loaded Diagram',
       icons: finalIcons,
-      colors: data.colors?.length ? data.colors : defaultColors,
+      colors: data.colors?.length ? data.colors : DEFAULT_COLORS,
       fitToScreen: data.fitToScreen !== false
     };
     

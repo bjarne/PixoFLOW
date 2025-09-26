@@ -30,6 +30,10 @@ export const useInitialDataManager = () => {
     return state.editorMode;
   });
   const { changeView } = useView();
+  
+  // Create a stable reference to actions to prevent re-renders
+  const actionsRef = useRef(uiStateActions);
+  actionsRef.current = uiStateActions;
 
   const load = useCallback(
     (_initialData: InitialData) => {
@@ -116,13 +120,13 @@ export const useInitialDataManager = () => {
           width: rendererSize?.width ?? 0,
           height: rendererSize?.height ?? 0
         });
-
-        uiStateActions.setScroll({
+        
+        actionsRef.current.setScroll({
           position: scroll,
           offset: CoordsUtils.zero()
         });
 
-        uiStateActions.setZoom(zoom);
+        actionsRef.current.setZoom(zoom);
       }
 
       const categoriesState: IconCollectionState[] = categoriseIcons(
@@ -134,17 +138,17 @@ export const useInitialDataManager = () => {
         };
       });
 
-      uiStateActions.setIconCategoriesState(categoriesState);
+      actionsRef.current.setIconCategoriesState(categoriesState);
 
       setIsReady(true);
     },
-    [changeView, model.actions, rendererEl, uiStateActions, editorMode]
+    [changeView, rendererEl, editorMode]
   );
 
   const clear = useCallback(() => {
     load({ ...INITIAL_DATA, icons: model.icons, colors: model.colors });
-    uiStateActions.resetUiState();
-  }, [load, model.icons, model.colors, uiStateActions]);
+    actionsRef.current.resetUiState();
+  }, [load, model.icons, model.colors]);
 
   return {
     load,

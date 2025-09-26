@@ -29,6 +29,11 @@ const App = ({
   const uiStateActions = useUiStateStore((state) => {
     return state.actions;
   });
+  
+  // Create a stable reference to prevent infinite re-renders
+  const actionsRef = React.useRef(uiStateActions);
+  actionsRef.current = uiStateActions;
+  
   const initialDataManager = useInitialDataManager();
   const model = useModelStore((state) => {
     return modelFromModelStore(state);
@@ -47,14 +52,29 @@ const App = ({
 
   const { load } = initialDataManager;
 
-  useEffect(() => {
-    load({ ...INITIAL_DATA, ...initialData });
-  }, [initialData, load]);
+  // Memoize the merged initial data to prevent creating new objects on every render
+  const mergedInitialData = React.useMemo(() => {
+    return { ...INITIAL_DATA, ...initialData };
+  }, [initialData]);
+
+  // Track if we've already loaded to prevent duplicate calls
+  const hasLoadedRef = React.useRef(false);
+  const prevDataRef = React.useRef<string>('');
 
   useEffect(() => {
-    uiStateActions.setEditorMode(editorMode);
-    uiStateActions.setMainMenuOptions(mainMenuOptions);
-  }, [editorMode, uiStateActions, mainMenuOptions]);
+    const dataStr = JSON.stringify(mergedInitialData);
+    // Only load if data actually changed or this is the first load
+    if (!hasLoadedRef.current || prevDataRef.current !== dataStr) {
+      hasLoadedRef.current = true;
+      prevDataRef.current = dataStr;
+      load(mergedInitialData);
+    }
+  }, [mergedInitialData, load]);
+
+  useEffect(() => {
+    actionsRef.current.setEditorMode(editorMode);
+    actionsRef.current.setMainMenuOptions(mainMenuOptions);
+  }, [editorMode, mainMenuOptions]);
 
   useEffect(() => {
     return () => {
@@ -69,8 +89,8 @@ const App = ({
   }, [model, initialDataManager.isReady, onModelUpdated]);
 
   useEffect(() => {
-    uiStateActions.setEnableDebugTools(enableDebugTools);
-  }, [enableDebugTools, uiStateActions]);
+    actionsRef.current.setEnableDebugTools(enableDebugTools);
+  }, [enableDebugTools]);
 
   if (!initialDataManager.isReady) return null;
 
